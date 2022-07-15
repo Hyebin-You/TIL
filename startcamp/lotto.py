@@ -88,6 +88,6 @@ def checktime1000():
     print('2등 당첨 횟수는 ' + str(b))
     print('3등 당첨 횟수는 ' + str(c))
     print('4등 당첨 횟수는 ' + str(d))
-    print('5등 당첨 횟수는 ' + str(e))
+    
 
 checktime1000()
