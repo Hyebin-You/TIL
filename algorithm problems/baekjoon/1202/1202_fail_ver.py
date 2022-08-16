@@ -12,14 +12,16 @@ j.sort(key=lambda i: i[0])
 result = 0
 for i in range(K):
     max_value = 0
+    max_idx = 0
     for k in range(0, N):
         if weight[i] >= j[k][0]:
             if max_value < j[k][1]:
                 max_value = j[k][1]
+                max_idx = k
         else:
             break
     result += max_value
-    weight[weight.index(max_value)] = 0
+    j[max_idx][1] = 0
 
 print(result)
 
