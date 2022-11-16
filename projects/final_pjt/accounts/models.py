@@ -1,0 +1,34 @@
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+
+# Create your models here.
+class User(AbstractUser):
+    point = models.IntegerField()
+    tier = models.CharField(max_length=20)
+    win_point = models.IntegerField()
+    nickname = models.CharField(max_length=8)
+    blackcude = models.IntegerField()
+    redcude = models.IntegerField()
+
+
+class Usercard(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ability1 = models.CharField(max_length=30)
+    ability2 = models.CharField(max_length=30)
+    ability3 = models.CharField(max_length=30)
+    ability_grade = models.CharField(max_length=20)
+
+
+class Attacklist(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    card1 = models.ForeignKey(Usercard, on_delete=models.CASCADE, null=True, related_name='a_usercards1')
+    card2 = models.ForeignKey(Usercard, on_delete=models.CASCADE, null=True, related_name='a_usercards2')
+    card3 = models.ForeignKey(Usercard, on_delete=models.CASCADE, null=True, related_name='a_usercards3')
+
+
+class Defenselist(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    card1 = models.ForeignKey(Usercard, on_delete=models.CASCADE, null=True, related_name='d_usercards1')
+    card2 = models.ForeignKey(Usercard, on_delete=models.CASCADE, null=True, related_name='d_usercards2')
+    card3 = models.ForeignKey(Usercard, on_delete=models.CASCADE, null=True, related_name='d_usercards3')
