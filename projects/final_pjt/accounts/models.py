@@ -4,16 +4,21 @@ from django.conf import settings
 
 # Create your models here.
 class User(AbstractUser):
-    point = models.IntegerField()
+    point = models.IntegerField(default=10000)
     tier = models.CharField(max_length=20)
-    win_point = models.IntegerField()
+    win_point = models.IntegerField(default=0)
     nickname = models.CharField(max_length=8)
-    blackcude = models.IntegerField()
-    redcude = models.IntegerField()
+    blackcude = models.IntegerField(default=0)
+    redcude = models.IntegerField(default=0)
 
 
 class Usercard(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    isnormal = models.BooleanField()
+    attack = models.IntegerField()
+    defense = models.IntegerField()
+    life = models.IntegerField()
+    img_url = models.CharField(max_length=20)
     ability1 = models.CharField(max_length=30)
     ability2 = models.CharField(max_length=30)
     ability3 = models.CharField(max_length=30)

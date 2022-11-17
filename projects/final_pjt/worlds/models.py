@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from accounts.models import Usercard
 
 # Create your models here.
 class Profile_icon(models.Model):
@@ -22,7 +21,6 @@ class Card(models.Model):
     defense = models.IntegerField()
     life = models.IntegerField()
     img_url = models.TextField()
-    usercards = models.ManyToManyField(Usercard)
 
 
 class Rankcomment(models.Model):
