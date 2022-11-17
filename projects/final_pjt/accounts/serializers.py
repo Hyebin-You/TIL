@@ -44,4 +44,5 @@ class CustomUserdetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'nickname', 'point', 'tier', 'win_point', 'blackcude', 'redcude', 'playlist_set', 'attacklist_set', 'defenselist_set', 'battlelog_set')
+        fields = ('username', 'nickname', 'point', 'tier', 'win_point', 'blackcude', 'redcude',
+            'playlist_set', 'attacklist_set', 'defenselist_set', 'battlelog_set')
