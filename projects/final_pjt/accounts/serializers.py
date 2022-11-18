@@ -38,11 +38,12 @@ class DefenselistSerializer(serializers.ModelSerializer):
 
 class CustomUserdetailSerializer(serializers.ModelSerializer):
     playlist_set = PlaylistSerializer(many=True)
-    attacklist_set = AttacklistSerializer(read_only=True)
-    defenselist_set = DefenselistSerializer(read_only=True)
+    attacklist_set = AttacklistSerializer(many=True, read_only=True)
+    defenselist_set = DefenselistSerializer(many=True, read_only=True)
     battlelog_set = BattlelogSerializer(many=True, read_only=True)
+    usercard_set = UsercardSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ('username', 'nickname', 'point', 'tier', 'win_point', 'blackcude', 'redcude',
-            'playlist_set', 'attacklist_set', 'defenselist_set', 'battlelog_set')
+        fields = ('username', 'nickname', 'point', 'tier', 'win_point', 'blackcube', 'redcube',
+            'playlist_set', 'attacklist_set', 'defenselist_set', 'battlelog_set', 'usercard_set')

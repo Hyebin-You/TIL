@@ -10,7 +10,7 @@ class Profile_icon(models.Model):
 
 
 class Battlelog(models.Model):
-    log = models.BooleanField()
+    log = models.CharField(max_length=10)
     enermy_id = models.IntegerField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
@@ -25,4 +25,4 @@ class Card(models.Model):
 
 class Rankcomment(models.Model):
     content = models.CharField(max_length=20)
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)

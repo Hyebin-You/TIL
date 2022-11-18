@@ -1,0 +1,277 @@
+[
+{
+    "model": "worlds.card",
+    "pk": 1,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/공유.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 2,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/공효진.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 3,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/곽도원.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 4,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/김대명.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 5,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/김윤석.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 6,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/다니엘래드클리프.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 7,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/베네딕트컴버배치.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 8,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/브래드피트.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 9,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/송승헌.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 10,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/스칼렛요한슨.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 11,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/안젤리나졸리.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 12,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/엠마스톤.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 13,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/엠마왓슨.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 14,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/오연서.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 15,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/원빈.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 16,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/유연석.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 17,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/이동욱.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 18,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/이민정.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 19,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/임수정.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 20,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/채수빈.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 21,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/콜린퍼스.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 22,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/톰행크스.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 23,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/하지원.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 24,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/한가인.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 25,
+    "fields": {
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/황정민.jpg"
+    }
+}
+]

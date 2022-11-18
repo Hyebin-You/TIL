@@ -9,8 +9,16 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'content', 'score')
         read_only_fields = ('movie', 'user')
 
+
+class GenreSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Genre
+        fields = ('name',)
+
     
 class MovieListSerializer(serializers.ModelSerializer):
+    genres = GenreSerializer(many=True, read_only=True)
     
     class Meta:
         model = Movie
@@ -26,6 +34,7 @@ class ReviewSimpleSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     review_set = ReviewSimpleSerializer(many=True, read_only=True)
+    genres = GenreSerializer(many=True, read_only=True)
 
     class Meta:
         model = Movie

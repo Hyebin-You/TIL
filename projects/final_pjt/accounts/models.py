@@ -5,11 +5,11 @@ from django.conf import settings
 # Create your models here.
 class User(AbstractUser):
     point = models.IntegerField(default=10000)
-    tier = models.CharField(max_length=20)
+    tier = models.CharField(max_length=20, default='Bronze')
     win_point = models.IntegerField(default=0)
     nickname = models.CharField(max_length=8)
-    blackcude = models.IntegerField(default=0)
-    redcude = models.IntegerField(default=0)
+    blackcube = models.IntegerField(default=0)
+    redcube = models.IntegerField(default=0)
 
 
 class Usercard(models.Model):
