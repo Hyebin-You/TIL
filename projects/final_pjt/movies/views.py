@@ -12,7 +12,8 @@ from .serializers import ReviewSimpleSerializer, PlaylistSerializer, PlaylistCre
 @api_view(['GET'])      # 영화들 검색
 def movie_list(request, search_type):
     if search_type == 'latest':
-        movies = Movie.objects.all().order_by('-release_date')
+        # 11/20 최신 영화 중 예고편 키가 있는 것만 정렬해서 보내게 수정
+        movies = Movie.objects.exclude(video_key='').order_by('-release_date')
         movies = movies[:20]
         serializer = MovieListSerializer(movies, many=True)
         

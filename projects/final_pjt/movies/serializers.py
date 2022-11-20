@@ -22,7 +22,7 @@ class MovieListSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ('id', 'title', 'poster_path', 'vote_average', 'genres')
+        fields = ('id', 'title', 'poster_path', 'vote_average', 'genres', 'video_key')
 
 
 class ReviewSimpleSerializer(serializers.ModelSerializer):
@@ -46,7 +46,7 @@ class PlaylistCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Playlist
-        fields = ('isopened', 'in_movies')
+        fields = ('isopened', 'in_movies', 'title')
         read_only_fields = ('user',)
 
 
@@ -55,5 +55,5 @@ class PlaylistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Playlist
-        fields = ('id', 'isopened', 'in_movies')
+        fields = ('id', 'isopened', 'in_movies', 'title')
         read_only_fields = ('user',)

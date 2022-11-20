@@ -10,6 +10,7 @@ class Genre(models.Model):
 
 class Playlist(models.Model):
     isopened = models.BooleanField(default=False)
+    title = models.CharField(max_length=10)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
@@ -29,7 +30,7 @@ class Movie(models.Model):
 
 class Review(models.Model):
     title = models.CharField(max_length=30)
-    content = models.TextField()
+    content = models.CharField(max_length=50)
     score = models.IntegerField()
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

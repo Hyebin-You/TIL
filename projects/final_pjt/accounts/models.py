@@ -14,6 +14,7 @@ class User(AbstractUser):
 
 class Usercard(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # cardname = models.CharField(max_length=20)
     isnormal = models.BooleanField()
     attack = models.IntegerField()
     defense = models.IntegerField()

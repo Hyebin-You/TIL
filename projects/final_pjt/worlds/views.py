@@ -1,11 +1,14 @@
 from django.shortcuts import render
-# from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RankSerializer, RankcommentSerializer
 from .models import Battlelog, Rankcomment
+from accounts.models import Defenselist
+from accounts.serializers import DefenselistSerializer
+import random
 
 
 User = get_user_model()
@@ -78,3 +81,63 @@ def change_tier(request):       # 티어 변경 함수
     user.tier = request.data['after']
     user.save()
     return Response(status=status.HTTP_200_OK)
+
+
+def calculate_card(card):
+    final_attack = card.attack
+    final_defense = card.defense
+    final_life = card.life
+    a_a = 0
+    a_l = 0
+    a_list = [card.ability1, card.ability2, card.ability3]
+    for a in a_list:
+        if a[:2] == '공격':
+            a_a += int(a[4:6])
+        elif a[:2] == '방어':
+            final_defense += int(a[4:6])
+        else:
+            a_l += int(a[3:5])
+
+    final_attack += round(final_attack * a_a / 100)
+    final_life += round(final_life * a_l / 100)
+    card_info = {
+        'isnormal': card.isnormal,
+        'final_attack': final_attack,
+        'final_defense': final_defense,
+        'final_life' : final_life,
+        'img_url': card.img_url
+    }
+    return card_info
+
+
+@api_view(['GET'])
+def get_enermy_status(request):
+    defenselists = Defenselist.objects.exclude(user_id=request.user.pk)
+    defenselist = random.sample(list(defenselists), 1)
+    enermy_nickname = defenselist[0].user.nickname
+    c1_info = calculate_card(defenselist[0].card1)
+    c2_info = calculate_card(defenselist[0].card2)
+    c3_info = calculate_card(defenselist[0].card3)
+    enermy_status = {
+        'enermy_id': defenselist[0].user.id,
+        'enermy_nickname': enermy_nickname,
+        'card1': c1_info,
+        'card2': c2_info,
+        'card3': c3_info
+    }
+    return JsonResponse(enermy_status)
+
+
+@api_view(['GET'])
+def get_my_status(request):
+    attacklist = Defenselist.objects.get(user_id=request.user.pk)
+    c1_info = calculate_card(attacklist.card1)
+    c2_info = calculate_card(attacklist.card2)
+    c3_info = calculate_card(attacklist.card3)
+    my_status = {
+        'my_nickname': request.user.nickname,
+        'card1': c1_info,
+        'card2': c2_info,
+        'card3': c3_info
+    }
+    return JsonResponse(my_status)

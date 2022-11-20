@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+# from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 app_name='movies'
 urlpatterns = [
@@ -14,4 +15,6 @@ urlpatterns = [
     path('getallplaylists/', views.all_playlists, name='all_playlists'),
     path('user_playlists/', views.user_playlists, name='user_playlists'),
     path('playlist_detail/<int:playlist_id>/', views.playlist_detail, name='playlist_detail'),
+    # path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    # path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]

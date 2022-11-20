@@ -16,6 +16,7 @@ class Battlelog(models.Model):
 
 
 class Card(models.Model):
+    # cardname = models.CharField(max_length=20)
     isnormal = models.BooleanField()
     attack = models.IntegerField()
     defense = models.IntegerField()
