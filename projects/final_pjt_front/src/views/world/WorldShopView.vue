@@ -5,7 +5,7 @@
 		<WorldShopCube />
     <button @click="getCards">카드 뽑기</button>
     <br>
-    <img v-for="(card, index) in cardList" :key='index' :src="`/assets/actors/${card.img_url}`">
+    <img v-for="(card, index) in cardList" :key='index' :src="require(`@/assets/actors/${card.img_url}`)">
     <br>
     <p>블랙 큐브를 몇 개 구매하시겠습니까</p>
     <input type="number" @keyup.enter="buyBlackCube" v-model='buy_black' placeholder="개수를 입력 후 엔터치기">
@@ -74,11 +74,11 @@ export default {
     }
     ,
     getCards() {
-      this.getCard(3)
-      // this.getCard(_.random(1, 25))
-      // this.getCard(_.random(1, 25))
-      // this.getCard(_.random(1, 25))
-      // this.getCard(_.random(1, 25))
+      this.getCard(_.random(1, 25))
+      this.getCard(_.random(1, 25))
+      this.getCard(_.random(1, 25))
+      this.getCard(_.random(1, 25))
+      this.getCard(_.random(1, 25))
     },
     buyBlackCube() {
       const result = confirm(`블랙큐브를 ${this.buy_black}개 구매하시겠습니까?`)

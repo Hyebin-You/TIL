@@ -63,10 +63,10 @@ export default {
       }
     },
     FirstAttack() {
-      const m_a = _.random(this.my_card1.final_attack - 20, this.my_card1.final_attack + 21)
+      const m_a = _.random(this.my_card1.final_attack - 20, this.my_card1.final_attack + 20)
       const m_a_l = _.round(m_a - m_a * this.enermy_card1.final_defense / 100)
       let my_critical = false
-      if (_.random(1, 11) === 3 || _.random(1, 11) === 5 || _.random(1, 11) === 7) {
+      if (_.random(1, 10) === 3 || _.random(1, 10) === 5 || _.random(1, 10) === 7) {
         my_critical = true
       }
 
@@ -93,10 +93,10 @@ export default {
         }
       }
 
-      const e_a = _.random(this.enermy_card1.final_attack - 20, this.enermy_card1.final_attack + 21)
+      const e_a = _.random(this.enermy_card1.final_attack - 20, this.enermy_card1.final_attack + 20)
       const e_a_l = _.round(e_a - e_a * this.my_card1.final_defense / 100)
       let enermy_critical = false
-      if (_.random(1, 11) === 3 || _.random(1, 11) === 5 || _.random(1, 11) === 7) {
+      if (_.random(1, 10) === 3 || _.random(1, 10) === 5 || _.random(1, 10) === 7) {
         enermy_critical = true
       }
 
@@ -125,10 +125,10 @@ export default {
       }
     },
     SecondAttack() {
-      const m_a = _.random(this.my_card2.final_attack - 20, this.my_card2.final_attack + 21)
+      const m_a = _.random(this.my_card2.final_attack - 20, this.my_card2.final_attack + 20)
       const m_a_l = _.round(m_a - m_a * this.enermy_card2.final_defense / 100)
       let my_critical = false
-      if (_.random(1, 11) === 3 || _.random(1, 11) === 5 || _.random(1, 11) === 7) {
+      if (_.random(1, 10) === 3 || _.random(1, 10) === 5 || _.random(1, 10) === 7) {
         my_critical = true
       }
 
@@ -155,10 +155,10 @@ export default {
         }
       }
 
-      const e_a = _.random(this.enermy_card2.final_attack - 20, this.enermy_card2.final_attack + 21)
+      const e_a = _.random(this.enermy_card2.final_attack - 20, this.enermy_card2.final_attack + 20)
       const e_a_l = _.round(e_a - e_a * this.my_card2.final_defense / 100)
       let enermy_critical = false
-      if (_.random(1, 11) === 3 || _.random(1, 11) === 5 || _.random(1, 11) === 7) {
+      if (_.random(1, 10) === 3 || _.random(1, 10) === 5 || _.random(1, 10) === 7) {
         enermy_critical = true
       }
 
@@ -187,10 +187,10 @@ export default {
       }
     },
     ThirdAttack() {
-      const m_a = _.random(this.my_card3.final_attack - 20, this.my_card3.final_attack + 21)
+      const m_a = _.random(this.my_card3.final_attack - 20, this.my_card3.final_attack + 20)
       const m_a_l = _.round(m_a - m_a * this.enermy_card3.final_defense / 100)
       let my_critical = false
-      if (_.random(1, 11) === 3 || _.random(1, 11) === 5 || _.random(1, 11) === 7) {
+      if (_.random(1, 10) === 3 || _.random(1, 10) === 5 || _.random(1, 10) === 7) {
         my_critical = true
       }
 
@@ -217,10 +217,10 @@ export default {
         }
       }
 
-      const e_a = _.random(this.enermy_card3.final_attack - 20, this.enermy_card3.final_attack + 21)
+      const e_a = _.random(this.enermy_card3.final_attack - 20, this.enermy_card3.final_attack + 20)
       const e_a_l = _.round(e_a - e_a * this.my_card3.final_defense / 100)
       let enermy_critical = false
-      if (_.random(1, 11) === 3 || _.random(1, 11) === 5 || _.random(1, 11) === 7) {
+      if (_.random(1, 10) === 3 || _.random(1, 10) === 5 || _.random(1, 10) === 7) {
         enermy_critical = true
       }
 

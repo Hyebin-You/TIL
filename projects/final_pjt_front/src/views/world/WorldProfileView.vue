@@ -5,6 +5,7 @@
     <WorldProfileBattleLogList/>
     <WorldProfileCube/>
     <WorldDeck/>
+    <WorldCardDetail/>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import ProfileIconListItem from '@/components/ProfileIconListItem'
 import WorldProfileBattleLogList from '@/components/world/profile/WorldProfileBattleLogList'
 import WorldProfileCube from '@/components/world/profile/WorldProfileCube'
 import WorldDeck from '@/components/world/profile/WorldDeck'
+import WorldCardDetail from '@/components/world/profile/WorldCardDetail'
 
 export default {
   name: 'WorldProfileView',
@@ -20,7 +22,8 @@ export default {
     ProfileIconListItem,
     WorldProfileBattleLogList,
     WorldProfileCube,
-    WorldDeck
+    WorldDeck,
+    WorldCardDetail
   }
 }
 </script>

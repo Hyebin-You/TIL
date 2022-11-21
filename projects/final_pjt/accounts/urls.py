@@ -10,4 +10,5 @@ urlpatterns = [
     path('set_nickname/', views.set_nickname, name='set_nickname'),
     path('set_like_genres/<str:genre_name>/', views.set_like_genres, name='set_like_genres'),
     path('modify_card/', views.modify_card, name='modify_card'),
+    path('use_cube/', views.use_cube, name='use_cube'),
 ]

@@ -31,7 +31,7 @@ def make_usercards(request):
     usercard.ability1 = request.data['ability1']
     usercard.ability2 = request.data['ability2']
     usercard.ability3 = request.data['ability3']
-    usercard.ability_grade = 'epic'
+    usercard.ability_grade = '에픽'
     usercard.user = request.user
     usercard.save()
     serializer = UsercardSerializer(usercard)
@@ -97,6 +97,21 @@ def set_like_genres(request, genre_name):
 @api_view(['POST'])
 def modify_card(request):
     card = Usercard.objects.get(pk=request.data['card_pk'])
-    card.img_url = 'card_img/kwak.jpg'
+    card.ability_grade = request.data['ability_grade']
+    card.ability1 = request.data['ability1']
+    card.ability2 = request.data['ability2']
+    card.ability3 = request.data['ability3']
     card.save()
+    serializer = UsercardSerializer(card)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def use_cube(request):
+    user = request.user
+    if request.data['cubename'] == 'black':
+        user.blackcube -= 1
+    else:
+        user.redcube -= 1
+    
     return Response(status=status.HTTP_200_OK)
