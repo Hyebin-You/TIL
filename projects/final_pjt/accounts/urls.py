@@ -8,6 +8,6 @@ urlpatterns = [
     path('make_attacklist/', views.make_attacklist, name='make_attacklist'),
     path('make_defenselist/', views.make_defenselist, name='make_defenselist'),
     path('set_nickname/', views.set_nickname, name='set_nickname'),
-    path('set_like_genres/<int:genre_id>/', views.set_like_genres, name='set_like_genres'),
+    path('set_like_genres/<str:genre_name>/', views.set_like_genres, name='set_like_genres'),
     path('modify_card/', views.modify_card, name='modify_card'),
 ]

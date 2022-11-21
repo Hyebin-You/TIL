@@ -29,8 +29,8 @@ class Movie(models.Model):
 
 
 class Review(models.Model):
-    title = models.CharField(max_length=30)
-    content = models.CharField(max_length=50)
+    title = models.CharField(max_length=20)
+    content = models.CharField(max_length=40)
     score = models.IntegerField()
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

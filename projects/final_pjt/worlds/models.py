@@ -11,12 +11,12 @@ class Profile_icon(models.Model):
 
 class Battlelog(models.Model):
     log = models.CharField(max_length=10)
-    enermy_id = models.IntegerField()
+    enermy_nickname = models.CharField(max_length=10)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class Card(models.Model):
-    # cardname = models.CharField(max_length=20)
+    cardname = models.CharField(max_length=20)
     isnormal = models.BooleanField()
     attack = models.IntegerField()
     defense = models.IntegerField()

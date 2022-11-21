@@ -1,0 +1,1174 @@
+[
+{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$lmdGtPqsW6KCcRhJx9eWUK$7eikyApyIF7hwMxECLrXu13ZHqG/00EGnIKb8Qzwc6I=",
+        "last_login": "2022-11-21T04:48:49.216Z",
+        "is_superuser": false,
+        "username": "test",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-21T04:48:49.064Z",
+        "point": 8600,
+        "tier": "Bronze",
+        "win_point": 150,
+        "nickname": "하늘 수정",
+        "blackcube": 13,
+        "redcube": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$5NmRk3pwsYfXrRwNmdIe3o$3A9tgyNO7w2EKqZnl+RrbUMmDjAWBcqapZeDZLYO5No=",
+        "last_login": "2022-11-21T04:49:04.430Z",
+        "is_superuser": false,
+        "username": "test2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-21T04:49:04.283Z",
+        "point": 10000,
+        "tier": "Bronze",
+        "win_point": 0,
+        "nickname": "달",
+        "blackcube": 0,
+        "redcube": 0,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$la9pnQr9pSzxTALaVMeyrw$R6fxJ9mYOH/hPtcXYSZT1owLlwBkKRNOQrpgD8WW4qY=",
+        "last_login": "2022-11-21T04:49:25.634Z",
+        "is_superuser": false,
+        "username": "test3",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-21T04:49:25.477Z",
+        "point": 10000,
+        "tier": "Bronze",
+        "win_point": 0,
+        "nickname": "별",
+        "blackcube": 0,
+        "redcube": 0,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$fKGKMAOCECoFFafrY62ZEm$Qc7JLduseRbHgH6eFrw2I8ErXvg07oD3Ucwlj5hygZU=",
+        "last_login": "2022-11-21T04:49:33.837Z",
+        "is_superuser": false,
+        "username": "test4",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-21T04:49:33.682Z",
+        "point": 10000,
+        "tier": "Bronze",
+        "win_point": 0,
+        "nickname": "바다",
+        "blackcube": 0,
+        "redcube": 0,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$k3l4yYWPfaMLQ2rq1homOn$beHs1U5Wn4yHnzeTL4e1C4BVXuztoIXI1z+TY7rmtc0=",
+        "last_login": "2022-11-21T04:49:40.812Z",
+        "is_superuser": false,
+        "username": "test5",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-21T04:49:40.665Z",
+        "point": 10000,
+        "tier": "Bronze",
+        "win_point": 0,
+        "nickname": "산",
+        "blackcube": 0,
+        "redcube": 0,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "cardname": "다니엘래드클리프",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/다니엘래드클리프.jpg",
+        "ability1": "체력+03%",
+        "ability2": "공격력+06%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "cardname": "김대명",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/김대명.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "체력+06%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "cardname": "한가인",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/kwak.jpg",
+        "ability1": "체력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "cardname": "콜린퍼스",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/콜린퍼스.jpg",
+        "ability1": "체력+03%",
+        "ability2": "체력+03%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "cardname": "콜린퍼스",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/콜린퍼스.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "cardname": "채수빈",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/채수빈.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "공격력+03%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "cardname": "채수빈",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/채수빈.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "방어력+03%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "cardname": "공유",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/공유.jpg",
+        "ability1": "체력+03%",
+        "ability2": "공격력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "cardname": "원빈",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/원빈.jpg",
+        "ability1": "공격력+03%",
+        "ability2": "공격력+06%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 10,
+    "fields": {
+        "user": 2,
+        "cardname": "공효진",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/공효진.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "체력+06%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 11,
+    "fields": {
+        "user": 2,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/곽도원.jpg",
+        "ability1": "방어력+06%",
+        "ability2": "공격력+06%",
+        "ability3": "체력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 12,
+    "fields": {
+        "user": 2,
+        "cardname": "다니엘래드클리",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/다니엘래드클리프.jpg",
+        "ability1": "체력+06%",
+        "ability2": "공격력+03%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 13,
+    "fields": {
+        "user": 2,
+        "cardname": "황정민",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/황정민.jpg",
+        "ability1": "체력+03%",
+        "ability2": "공격력+03%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 14,
+    "fields": {
+        "user": 2,
+        "cardname": "엠마왓슨",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/엠마왓슨.jpg",
+        "ability1": "체력+03%",
+        "ability2": "체력+06%",
+        "ability3": "체력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 15,
+    "fields": {
+        "user": 2,
+        "cardname": "임수정",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/임수정.jpg",
+        "ability1": "체력+03%",
+        "ability2": "공격력+06%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 16,
+    "fields": {
+        "user": 2,
+        "cardname": "송승헌",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/송승헌.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 17,
+    "fields": {
+        "user": 2,
+        "cardname": "한가인",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/한가인.jpg",
+        "ability1": "방어력+06%",
+        "ability2": "공격력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 18,
+    "fields": {
+        "user": 2,
+        "cardname": "엠마스톤",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/엠마스톤.jpg",
+        "ability1": "체력+03%",
+        "ability2": "체력+06%",
+        "ability3": "체력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 19,
+    "fields": {
+        "user": 2,
+        "cardname": "안젤리나졸리",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/안젤리나졸리.jpg",
+        "ability1": "체력+03%",
+        "ability2": "공격력+03%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 20,
+    "fields": {
+        "user": 3,
+        "cardname": "송승헌",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/송승헌.jpg",
+        "ability1": "체력+03%",
+        "ability2": "체력+03%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 21,
+    "fields": {
+        "user": 3,
+        "cardname": "오연서",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/오연서.jpg",
+        "ability1": "체력+03%",
+        "ability2": "체력+03%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 22,
+    "fields": {
+        "user": 3,
+        "cardname": "김윤석",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/김윤석.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 23,
+    "fields": {
+        "user": 3,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/곽도원.jpg",
+        "ability1": "공격력+03%",
+        "ability2": "공격력+06%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 24,
+    "fields": {
+        "user": 3,
+        "cardname": "임수정",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/임수정.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "체력+06%",
+        "ability3": "체력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 25,
+    "fields": {
+        "user": 3,
+        "cardname": "엠마왓슨",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/엠마왓슨.jpg",
+        "ability1": "방어력+06%",
+        "ability2": "체력+06%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 26,
+    "fields": {
+        "user": 3,
+        "cardname": "공효진",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/공효진.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "방어력+06%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 27,
+    "fields": {
+        "user": 3,
+        "cardname": "브래드피트\n",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/브래드피트.jpg",
+        "ability1": "체력+06%",
+        "ability2": "방어력+06%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 28,
+    "fields": {
+        "user": 3,
+        "cardname": "콜린퍼스",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/콜린퍼스.jpg",
+        "ability1": "체력+06%",
+        "ability2": "체력+06%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 29,
+    "fields": {
+        "user": 3,
+        "cardname": "임수정",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/임수정.jpg",
+        "ability1": "체력+03%",
+        "ability2": "공격력+03%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 30,
+    "fields": {
+        "user": 4,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/곽도원.jpg",
+        "ability1": "체력+06%",
+        "ability2": "체력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 31,
+    "fields": {
+        "user": 4,
+        "cardname": "채수빈",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/채수빈.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "공격력+03%",
+        "ability3": "체력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 32,
+    "fields": {
+        "user": 4,
+        "cardname": "공유",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/공유.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "체력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 33,
+    "fields": {
+        "user": 4,
+        "cardname": "이민정",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/이민정.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "방어력+06%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 34,
+    "fields": {
+        "user": 4,
+        "cardname": "다니엘래드클리프",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/다니엘래드클리프.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "공격력+06%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 35,
+    "fields": {
+        "user": 4,
+        "cardname": "스칼렛요한슨",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/스칼렛요한슨.jpg",
+        "ability1": "체력+03%",
+        "ability2": "공격력+06%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 36,
+    "fields": {
+        "user": 4,
+        "cardname": "엠마왓슨",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/엠마왓슨.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "체력+03%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 37,
+    "fields": {
+        "user": 4,
+        "cardname": "이민정",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/이민정.jpg",
+        "ability1": "체력+06%",
+        "ability2": "체력+06%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 38,
+    "fields": {
+        "user": 4,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/곽도원.jpg",
+        "ability1": "공격력+03%",
+        "ability2": "공격력+03%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 39,
+    "fields": {
+        "user": 4,
+        "cardname": "송승헌",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/송승헌.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "체력+06%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 40,
+    "fields": {
+        "user": 5,
+        "cardname": "안젤리나졸리",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/안젤리나졸리.jpg",
+        "ability1": "공격력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 41,
+    "fields": {
+        "user": 5,
+        "cardname": "안젤리나졸리",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/안젤리나졸리.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "방어력+03%",
+        "ability3": "체력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 42,
+    "fields": {
+        "user": 5,
+        "cardname": "송승헌",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/송승헌.jpg",
+        "ability1": "공격력+03%",
+        "ability2": "체력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 43,
+    "fields": {
+        "user": 5,
+        "cardname": "공유",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/공유.jpg",
+        "ability1": "방어력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 44,
+    "fields": {
+        "user": 5,
+        "cardname": "김대명",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/김대명.jpg",
+        "ability1": "체력+03%",
+        "ability2": "방어력+06%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 45,
+    "fields": {
+        "user": 5,
+        "cardname": "원빈",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/원빈.jpg",
+        "ability1": "공격력+03%",
+        "ability2": "체력+03%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 46,
+    "fields": {
+        "user": 5,
+        "cardname": "엠마스톤",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/엠마스톤.jpg",
+        "ability1": "방어력+06%",
+        "ability2": "체력+03%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 47,
+    "fields": {
+        "user": 5,
+        "cardname": "안젤리나졸리",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/안젤리나졸리.jpg",
+        "ability1": "체력+06%",
+        "ability2": "방어력+06%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 48,
+    "fields": {
+        "user": 5,
+        "cardname": "엠마왓슨",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/엠마왓슨.jpg",
+        "ability1": "체력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 49,
+    "fields": {
+        "user": 5,
+        "cardname": "임수정",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 10,
+        "life": 600,
+        "img_url": "card_img/임수정.jpg",
+        "ability1": "체력+03%",
+        "ability2": "방어력+06%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 50,
+    "fields": {
+        "user": 1,
+        "cardname": "이동욱",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/이동욱.jpg",
+        "ability1": "체력+06%",
+        "ability2": "방어력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 51,
+    "fields": {
+        "user": 5,
+        "cardname": "베네딕트컴버배치",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/베네딕트컴버배치.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "공격력+06%",
+        "ability3": "공격력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 52,
+    "fields": {
+        "user": 5,
+        "cardname": "하지원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/하지원.jpg",
+        "ability1": "체력+03%",
+        "ability2": "방어력+03%",
+        "ability3": "공격력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 53,
+    "fields": {
+        "user": 5,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/kwak.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "공격력+03%",
+        "ability3": "체력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 54,
+    "fields": {
+        "user": 5,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/kwak.jpg",
+        "ability1": "방어력+03%",
+        "ability2": "방어력+03%",
+        "ability3": "방어력+03%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 55,
+    "fields": {
+        "user": 5,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/kwak.jpg",
+        "ability1": "체력+03%",
+        "ability2": "체력+03%",
+        "ability3": "방어력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.usercard",
+    "pk": 56,
+    "fields": {
+        "user": 5,
+        "cardname": "곽도원",
+        "isnormal": true,
+        "attack": 100,
+        "defense": 100,
+        "life": 100,
+        "img_url": "card_img/kwak.jpg",
+        "ability1": "공격력+03%",
+        "ability2": "방어력+03%",
+        "ability3": "체력+06%",
+        "ability_grade": "epic"
+    }
+},
+{
+    "model": "accounts.attacklist",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "card1": 3,
+        "card2": 5,
+        "card3": 8
+    }
+},
+{
+    "model": "accounts.attacklist",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "card1": 14,
+        "card2": 16,
+        "card3": 17
+    }
+},
+{
+    "model": "accounts.attacklist",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "card1": 22,
+        "card2": 25,
+        "card3": 26
+    }
+},
+{
+    "model": "accounts.attacklist",
+    "pk": 4,
+    "fields": {
+        "user": 4,
+        "card1": 33,
+        "card2": 36,
+        "card3": 38
+    }
+},
+{
+    "model": "accounts.attacklist",
+    "pk": 5,
+    "fields": {
+        "user": 5,
+        "card1": 43,
+        "card2": 44,
+        "card3": 45
+    }
+},
+{
+    "model": "accounts.defenselist",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "card1": 3,
+        "card2": 5,
+        "card3": 8
+    }
+},
+{
+    "model": "accounts.defenselist",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "card1": 14,
+        "card2": 16,
+        "card3": 17
+    }
+},
+{
+    "model": "accounts.defenselist",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "card1": 22,
+        "card2": 25,
+        "card3": 26
+    }
+},
+{
+    "model": "accounts.defenselist",
+    "pk": 4,
+    "fields": {
+        "user": 4,
+        "card1": 33,
+        "card2": 36,
+        "card3": 38
+    }
+},
+{
+    "model": "accounts.defenselist",
+    "pk": 5,
+    "fields": {
+        "user": 5,
+        "card1": 43,
+        "card2": 44,
+        "card3": 45
+    }
+}
+]

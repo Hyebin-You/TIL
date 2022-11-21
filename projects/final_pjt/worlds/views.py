@@ -39,8 +39,10 @@ def make_battlelog(request):
         log = Battlelog()
         log.log = '패배'
     
-    log.enermy_id = request.data['enermy_id']
+    enermy = User.objects.get(pk=request.data['enermy_id'])
+    # log.enermy_id = request.data['enermy_id']
     log.user = user
+    log.enermy_nickname = enermy.nickname
     log.save()
     return Response(status=status.HTTP_201_CREATED)
 
@@ -63,14 +65,18 @@ def create_rankcomment(request):
 @api_view(['POST'])
 def buy_cube(request):
     user = request.user
-
     if request.data['cubename'] == 'black':
-        user.blackcube += 1
-        user.point -= 100
+        if user.point >= 100 * int(request.data['num']):
+            user.blackcube += int(request.data['num'])
+            user.point -= 100 * int(request.data['num'])
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
-        user.redcube += 1
-        user.point -= 50
-    
+        if user.point >= 50 * int(request.data['num']):
+            user.redcube += int(request.data['num'])
+            user.point -= 50 * int(request.data['num'])
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)    
     user.save()
     return Response(status=status.HTTP_200_OK)
 

@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import CustomUserdetailSerializer, DefenselistSerializer
+from .serializers import CustomUserdetailSerializer, UsercardSerializer
 from .models import Usercard, Attacklist, Defenselist
 from worlds.models import Card
 from movies.models import Genre
@@ -22,6 +22,7 @@ def user_detail(request):
 def make_usercards(request):
     card = Card.objects.get(pk=request.data['card_pk'])
     usercard = Usercard()
+    usercard.cardname = card.cardname
     usercard.isnormal = card.isnormal
     usercard.attack = card.attack
     usercard.defense = card.defense
@@ -33,7 +34,8 @@ def make_usercards(request):
     usercard.ability_grade = 'epic'
     usercard.user = request.user
     usercard.save()
-    return Response(status=status.HTTP_201_CREATED)
+    serializer = UsercardSerializer(usercard)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -85,8 +87,8 @@ def set_nickname(request):       # 회원가입 후 닉네임 집어넣기, 닉�
 
 
 @api_view(['POST'])
-def set_like_genres(request, genre_id):
-    genre = Genre.objects.get(pk=genre_id)
+def set_like_genres(request, genre_name):
+    genre = Genre.objects.get(name=genre_name)
     if not genre.like_users.filter(pk=request.user.pk).exists():
         genre.like_users.add(request.user)
     return Response(status=status.HTTP_200_OK)
@@ -95,8 +97,6 @@ def set_like_genres(request, genre_id):
 @api_view(['POST'])
 def modify_card(request):
     card = Usercard.objects.get(pk=request.data['card_pk'])
-    card.attack = request.data['attack']
-    card.defense = request.data['defense']
-    card.life = request.data['life']
+    card.img_url = 'card_img/kwak.jpg'
     card.save()
     return Response(status=status.HTTP_200_OK)

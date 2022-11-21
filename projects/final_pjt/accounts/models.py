@@ -14,15 +14,15 @@ class User(AbstractUser):
 
 class Usercard(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # cardname = models.CharField(max_length=20)
+    cardname = models.CharField(max_length=20)
     isnormal = models.BooleanField()
     attack = models.IntegerField()
     defense = models.IntegerField()
     life = models.IntegerField()
-    img_url = models.CharField(max_length=20)
-    ability1 = models.CharField(max_length=30)
-    ability2 = models.CharField(max_length=30)
-    ability3 = models.CharField(max_length=30)
+    img_url = models.CharField(max_length=40)
+    ability1 = models.CharField(max_length=10)
+    ability2 = models.CharField(max_length=10)
+    ability3 = models.CharField(max_length=10)
     ability_grade = models.CharField(max_length=20)
 
 

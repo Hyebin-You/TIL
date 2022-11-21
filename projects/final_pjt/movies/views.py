@@ -14,23 +14,34 @@ def movie_list(request, search_type):
     if search_type == 'latest':
         # 11/20 최신 영화 중 예고편 키가 있는 것만 정렬해서 보내게 수정
         movies = Movie.objects.exclude(video_key='').order_by('-release_date')
-        movies = movies[:20]
+        movies = movies.exclude(overview='')
+        movies = movies.exclude(title='')
+        movies = list(movies)[:20]
         serializer = MovieListSerializer(movies, many=True)
         
     elif search_type == 'genre':
         genre_name = request.GET.get('genre')
         genre = Genre.objects.get(name=genre_name)
         movies = genre.movies.all()
-        movies = random.sample(list(movies), 20)
+        movies = movies.exclude(overview='')
+        movies = movies.exclude(title='')
+        movies = movies.exclude(video_key='')
         serializer = MovieListSerializer(movies, many=True)
                   
     elif search_type == 'random':
         movies = Movie.objects.all()
+        movies = movies.exclude(overview='')
+        movies = movies.exclude(title='')
+        movies = movies.exclude(video_key='')
         movies = random.sample(list(movies), 20)
         serializer = MovieListSerializer(movies, many=True)
     else:
         query = request.GET.get('query')
-        movies = Movie.objects.filter(title__contains=query)
+        movies = Movie.objects.all()
+        movies = movies.exclude(overview='')
+        movies = movies.exclude(title='')
+        movies = movies.exclude(video_key='')
+        movies = movies.filter(title__contains=query)
         serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
@@ -63,7 +74,8 @@ def create_review(request, movie_id):
     serializer = ReviewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=request.user)
-        return Response(status=status.HTTP_201_CREATED)
+        r_serializer = ReviewSimpleSerializer(movie.review_set.all(), many=True)
+        return Response(r_serializer.data)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])     # 리뷰 상세 조회, 수정, 삭제

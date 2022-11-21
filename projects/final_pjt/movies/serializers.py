@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Movie, Genre, Playlist, Review
+from django.contrib.auth import get_user_model
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -22,14 +23,22 @@ class MovieListSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ('id', 'title', 'poster_path', 'vote_average', 'genres', 'video_key')
+        fields = ('id', 'title', 'poster_path', 'vote_average', 'genres', 'video_key', 'overview',)
+
+
+class UserSimpleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = get_user_model()
+        fields = ('id', 'nickname')
 
 
 class ReviewSimpleSerializer(serializers.ModelSerializer):
-        
+        user = UserSimpleSerializer(read_only=True)
+
         class Meta:
             model = Review
-            fields = ('title', 'content', 'score')
+            fields = ('title', 'content', 'score', 'user')
 
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -38,7 +47,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        exclude = ('id', 'playlists')
+        fields = '__all__'
 
 
 class PlaylistCreateSerializer(serializers.ModelSerializer):

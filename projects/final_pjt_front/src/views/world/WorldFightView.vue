@@ -297,6 +297,9 @@ export default {
           const divAsk = document.getElementById('ask')
           this.final_result = '패'
           divAsk.style.display = 'block'
+        } else {
+          const but3 = document.getElementById('3round')
+          but3.style.display = 'inline'
         }
         clearInterval(this.loading)
       }
@@ -345,11 +348,11 @@ export default {
           'log': this.final_result
         },
         headers: {
-          Authorization: 'Token 0b09954693c79dba2ef2075925137194c634904b'
+          Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
         }
       })
       .then(() => {
-        this.$router.push({name: 'worldprofile'})
+        this.$router.go()
       })
     },
     getEnermy() {
@@ -357,7 +360,7 @@ export default {
         method: 'get',
         url: 'http://127.0.0.1:8000/worlds/get_enermy_status/',
         headers: {
-          Authorization: 'Token 0b09954693c79dba2ef2075925137194c634904b'
+          Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
         }
       })
       .then((res) => {
@@ -380,7 +383,7 @@ export default {
       method: 'get',
       url: 'http://127.0.0.1:8000/worlds/get_my_status/',
       headers: {
-        Authorization: 'Token 0b09954693c79dba2ef2075925137194c634904b'
+        Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
       }
     })
     .then((res) => {
