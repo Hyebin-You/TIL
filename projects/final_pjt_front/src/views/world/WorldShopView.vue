@@ -5,7 +5,7 @@
 		<WorldShopCube />
     <button @click="getCards">카드 뽑기</button>
     <br>
-    <img v-for="(card, index) in cardList" :key='index' :src="require(`@/assets/actors/${card.img_url}`)">
+    <!-- <img v-for="(card, index) in cardList" :key='index' :src="require(`@/assets/actors/${card.img_url}`)"> -->
     <br>
     <p>블랙 큐브를 몇 개 구매하시겠습니까</p>
     <input type="number" @keyup.enter="buyBlackCube" v-model='buy_black' placeholder="개수를 입력 후 엔터치기">
@@ -35,6 +35,7 @@ export default {
       buy_black: null,
       buy_red: null,
       cardList: [],
+      goldList: [1, 2, 3, 4, 5, 6, 7, 8]
     }
   },
   methods: {
@@ -54,16 +55,28 @@ export default {
         return this.abilitylist[5]
       }
     },
-    getCard(card_pk) {
+    getCard() {
       const ability1 = this.getability()
       const ability2 = this.getability()
       const ability3 = this.getability()
+      let card_pk
+      if (_.random(1, 100) <= 10) {
+        const a = _.random(1, 100)
+        if (a >= 3 && a < 13) {
+          card_pk = 9
+        } else {
+          card_pk = _.sample(this.goldList)
+        }
+      } else {
+        card_pk = _.random(10, 54)
+      }
+
       axios({
         method: 'post',
         url: 'http://127.0.0.1:8000/accounts/make_usercards/',
         data: {'card_pk': card_pk, 'ability1': ability1, 'ability2': ability2, 'ability3': ability3},
         headers: {
-          Authorization: 'Token ee6fb03fa4fe171dd3d989a63bb8561d1e3259c1'
+          Authorization: `Token ${this.$store.state.token}`
         }
       })
       .then((res) => {
@@ -74,11 +87,11 @@ export default {
     }
     ,
     getCards() {
-      this.getCard(_.random(1, 25))
-      this.getCard(_.random(1, 25))
-      this.getCard(_.random(1, 25))
-      this.getCard(_.random(1, 25))
-      this.getCard(_.random(1, 25))
+      this.getCard()
+      this.getCard()
+      this.getCard()
+      this.getCard()
+      this.getCard()
     },
     buyBlackCube() {
       const result = confirm(`블랙큐브를 ${this.buy_black}개 구매하시겠습니까?`)
@@ -91,7 +104,7 @@ export default {
             'cubename': 'black'
           },
           headers: {
-            Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
+            Authorization: `Token ${this.$store.state.token}`
           }
         })
         .then(() => {
@@ -117,7 +130,7 @@ export default {
             'cubename': 'red'
           },
           headers: {
-            Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
+            Authorization: `Token ${this.$store.state.token}`
           }
         })
         .then(() => {

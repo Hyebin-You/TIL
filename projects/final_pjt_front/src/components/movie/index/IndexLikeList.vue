@@ -24,6 +24,7 @@
 
 <script>
 import axios from "axios";
+import _ from 'lodash'
 import carousel from "vue-owl-carousel";
 import MovieItem from "@/components/movie/MovieItem";
 
@@ -36,13 +37,15 @@ export default {
 	data() {
 		return {
 			randomList: null,
-			tests: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 		};
 	},
 	created() {
+		console.log('zz', this.$store.state.userObject);
+		const userGenre = _.sample(this.$store.state.userObject.like_genres);
+		console.log(' 장르@@##', userGenre);
 		axios({
 			method: "get",
-			url: "http://127.0.0.1:8000/movies/search/random",
+			url: `http://127.0.0.1:8000/movies/search/genre?genre=${userGenre.name}`,
 		})
 			.then(res => {
 				this.randomList = res.data;
@@ -55,8 +58,8 @@ export default {
 		this.addArrow();
 	},
 	methods: {
-		addArrow(eventName) {
-			console.log("addarrow", eventName);
+		addArrow() {
+			// console.log("addarrow", eventName);
 			const nextBtnList = document.querySelectorAll(".owl-prev");
 			const prevBtnList = document.querySelectorAll(".owl-next");
 

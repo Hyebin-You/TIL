@@ -348,7 +348,7 @@ export default {
           'log': this.final_result
         },
         headers: {
-          Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
+          Authorization: `Token ${this.$store.state.token}`
         }
       })
       .then(() => {
@@ -360,7 +360,7 @@ export default {
         method: 'get',
         url: 'http://127.0.0.1:8000/worlds/get_enermy_status/',
         headers: {
-          Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
+          Authorization: `Token ${this.$store.state.token}`
         }
       })
       .then((res) => {
@@ -383,7 +383,7 @@ export default {
       method: 'get',
       url: 'http://127.0.0.1:8000/worlds/get_my_status/',
       headers: {
-        Authorization: 'Token 05bf7dab4d5be465453cc9807bb047ed9cc89953'
+        Authorization: `Token ${this.$store.state.token}`
       }
     })
     .then((res) => {

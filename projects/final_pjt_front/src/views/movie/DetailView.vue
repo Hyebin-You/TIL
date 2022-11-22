@@ -1,18 +1,21 @@
 <template>
-	<div
-		id="dropshadow"
-		@click="detailOff"
-		v-if="detailSwitch"
-		class="dropshadow">
-		<div class="detailbox">
-			<h1>{{ Movie.title }}</h1>
-			<div class="detail-flex">
-				<DetailVideoContext />
-				<DetailSideReview />
+	<transition name="fade-detail" mode="out-in">
+		<div
+			v-if="movie"
+			id="dropshadow"
+			:style="{ display: detailBoxShadowStyle }"
+			@click="detailOff"
+			class="dropshadow">
+			<div class="detailbox">
+				<div class="detail-flex">
+					<DetailVideoContext
+						:movie="movie" />
+					<DetailSideReview :movie="movie"/>
+				</div>
+				<DetailSameGenre :movie-genres="movie.genres" />
 			</div>
-			<DetailSameGenre style="margin: 0 auto; margin-top: 20px" />
 		</div>
-	</div>
+	</transition>
 </template>
 
 <script>
@@ -31,27 +34,29 @@ export default {
 		return {};
 	},
 	computed: {
-		detailSwitch() {
-			console.log("switch", this.$store.state.detailSwitch);
-			return this.$store.state.detailSwitch;
+		detailBoxShadowStyle() {
+			return this.$store.state.detailBoxShadowStyle;
 		},
-		Movie() {
+		movie() {
 			return this.$store.state.detailMovie;
 		},
 	},
 	methods: {
 		detailOff(event) {
 			if (event.target.id === "dropshadow") {
-				const bodyScroll = document.querySelector('body');
-				bodyScroll.style.overflow = 'scroll';
-				this.$store.state.detailSwitch = false;
+				const bodyScroll = document.querySelector("body");
+				bodyScroll.style.overflowY = "scroll";
+				this.$store.state.detailBoxShadowStyle = "none";
 			}
 		},
 	},
 };
 </script>
 
-<style>
+<style scoped>
+.hide {
+	display: none;
+}
 .detail-flex {
 	display: flex;
 	justify-content: space-evenly;
@@ -59,7 +64,7 @@ export default {
 
 .dropshadow {
 	width: 100vw;
-	height: 110%;
+	height: 200%;
 	background-color: rgba(0, 0, 0, 0.8);
 	display: flex;
 	justify-content: center;
@@ -71,20 +76,24 @@ export default {
 
 .detailbox {
 	position: fixed;
-	top: 100px;
-	background-color: plum;
+	top: 20px;
+	background-color: #161515;
+	border-radius: 5px;
 	width: 1200px;
-	height: 800px;
+	height: 900px;
+}
+.fade-detail-enter-active {
+	transition: all 0.5s ease-out;
+}
+/* .fade-detail-leave-active {
+	transition: all 0.1s ease-out;
+} */
 
-	font-family: Roboto;
-	font-family:"Noto Sans KR";
-	font-family: "Apple SD Gothic Neo";
-	font-family: "Nanum Gothic";
-	font-family: Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic",
-		"Malgun Gothic", sans-serif;
-	font-family: Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic",
-		"Malgun Gothic", sans-serif;
-	font-family: Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic",
-		"Malgun Gothic", sans-serif;
+.fade-detail-enter {
+	opacity: 0;
+}
+
+.fade-detail-leave-to {
+	opacity: 0;
 }
 </style>

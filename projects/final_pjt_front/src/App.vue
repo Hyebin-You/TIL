@@ -1,23 +1,6 @@
 <template>
 	<div id="app">
 		<NavBar />
-		<!-- <nav>
-      <router-link :to="{ name: 'index' }">Index</router-link> |
-      <router-link :to="{ name: 'login' }">Login</router-link> |
-      <router-link :to="{ name: 'signup' }">SignUp</router-link> |
-      <router-link :to="{ name: 'nickname' }">SignUpNick</router-link> |
-      <router-link :to="{ name: 'likegenre' }">SignUpGenre</router-link> |
-      <router-link :to="{ name: 'update' }">Update</router-link> |
-      <router-link :to="{ name: 'search' }">Search</router-link> |
-      <router-link :to="{ name: 'movieshop' }">MovieShop</router-link> |
-      <router-link :to="{ name: 'detail' }">Detail</router-link> |
-      <router-link :to="{ name: 'movieprofile' }">MovieProfile</router-link> |
-      <router-link :to="{ name: 'worldindex' }">WorldIndex</router-link> |
-      <router-link :to="{ name: 'worldprofile' }">WorldProfile</router-link> |
-      <hr>
-      <router-link :to="{ name: 'worldfight' }">WorldFight</router-link> |
-      <router-link :to="{ name: 'worldshop' }">WorldShopView</router-link> |
-    </nav> -->
 		<transition name="fade" mode="out-in">
 			<router-view />
 		</transition>
@@ -36,15 +19,32 @@ export default {
 </script>
 
 <style>
-body {
-	margin: 0;
+html {
+	width: 100%;
+  height: 100%;
 }
+body {
+	touch-action: none;
+	margin: 0;
+	width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+
+
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	color: #2c3e50;
+	color: white;
+	height: 100%;
+}
+
+::placeholder {
+  color: gray;
+	opacity: 0.8;
 }
 
 nav {
@@ -53,7 +53,7 @@ nav {
 
 nav a {
 	font-weight: bold;
-	color: #2c3e50;
+	color: white;
 }
 
 nav a.router-link-exact-active {

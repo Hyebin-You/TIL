@@ -1,5 +1,5 @@
 <template>
-	<div class="test" @click="showDetail(movie)">
+	<div class="test" @click="showDetail">
 		<img
 			:src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
 			alt="movie" />
@@ -12,24 +12,37 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
 	name: "MovieItem",
 	props: {
 		movie: Object,
 	},
 	methods: {
-    showDetail(movie) {
-      this.$store.dispatch('show_detail', movie);
+    showDetail() {
 			const bodyScroll = document.querySelector('body');
 			bodyScroll.style.overflow = 'hidden';
+			// TODO: Vuestyle로 수정
+			axios({
+				methods: 'get',
+				url: `http://127.0.0.1:8000/movies/movie_detail/${this.movie.id}/`
+			})
+				.then((res) => {
+					// console.log('!!!!!!!!!!!!!', res.data);
+					this.$store.commit('SHOW_DETAIL', res.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				})
 			// this.$router.push({ name: 'detail' });
 			// 나중에 여기 axios요청으로 pk값 담아서 detail페이지 요청하면됨
 			// 지금 캐러셀 디테일페이지 2마리씩 오류
     }
   },
-	created() {
-		this.$store.state.detailSwitch = false;
-	}
+	// created() {
+	// 	this.$store.state.detailSwitch = false;
+	// }
 };
 </script>
 
@@ -65,10 +78,12 @@ export default {
 }
 
 .text-hidden > p {
-	font-family: maplestory;
 	max-width: 150px;
+	font-size: 20px;
+	font-weight: 500;
+	padding-top: 150px;
 	/* padding-top: 200px; */
-	/* text-align: center; */
+	/* text-align: left; */
 	word-break: break-all;
 }
 img {

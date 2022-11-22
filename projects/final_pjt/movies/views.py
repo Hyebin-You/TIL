@@ -130,7 +130,7 @@ def playlist_movie(request, playlist_id, movie_id):         # 보관함에 영�
 
 @api_view(['GET'])
 def all_playlists(request):         # 존재하는 모든 플레이리스트 정보 반환
-    playlists = Playlist.objects.all()
+    playlists = Playlist.objects.filter(isopened=True)
     serializer = PlaylistSerializer(playlists, many=True)
     return Response(serializer.data)
 

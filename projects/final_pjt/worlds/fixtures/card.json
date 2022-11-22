@@ -1,0 +1,650 @@
+[
+{
+    "model": "worlds.card",
+    "pk": 1,
+    "fields": {
+        "cardname": "해리포터",
+        "isnormal": false,
+        "attack": 12700,
+        "defense": 14,
+        "life": 66000,
+        "img_url": "card_img/해리포터.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 2,
+    "fields": {
+        "cardname": "그루트",
+        "isnormal": false,
+        "attack": 12500,
+        "defense": 12,
+        "life": 71500,
+        "img_url": "card_img/그루트.png"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 3,
+    "fields": {
+        "cardname": "닥터 스트레인지",
+        "isnormal": false,
+        "attack": 15600,
+        "defense": 10,
+        "life": 68500,
+        "img_url": "card_img/닥터스트레인지.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 4,
+    "fields": {
+        "cardname": "볼드모트",
+        "isnormal": false,
+        "attack": 15300,
+        "defense": 8,
+        "life": 67300,
+        "img_url": "card_img/볼드모트.png"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 5,
+    "fields": {
+        "cardname": "성기훈",
+        "isnormal": false,
+        "attack": 13100,
+        "defense": 9,
+        "life": 70600,
+        "img_url": "card_img/성기훈.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 6,
+    "fields": {
+        "cardname": "아이언맨",
+        "isnormal": false,
+        "attack": 13000,
+        "defense": 16,
+        "life": 69000,
+        "img_url": "card_img/아이언맨.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 7,
+    "fields": {
+        "cardname": "장첸",
+        "isnormal": false,
+        "attack": 16000,
+        "defense": 6,
+        "life": 68000,
+        "img_url": "card_img/장첸.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 8,
+    "fields": {
+        "cardname": "조커",
+        "isnormal": false,
+        "attack": 15700,
+        "defense": 9,
+        "life": 66500,
+        "img_url": "card_img/조커.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 9,
+    "fields": {
+        "cardname": "교수님",
+        "isnormal": false,
+        "attack": 18000,
+        "defense": 15,
+        "life": 88888,
+        "img_url": "card_img/교수님.png"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 10,
+    "fields": {
+        "cardname": "갤가돗",
+        "isnormal": true,
+        "attack": 9700,
+        "defense": 7,
+        "life": 56000,
+        "img_url": "card_img/갤가돗.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 11,
+    "fields": {
+        "cardname": "공효진",
+        "isnormal": true,
+        "attack": 9200,
+        "defense": 8,
+        "life": 57300,
+        "img_url": "card_img/공효진.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 12,
+    "fields": {
+        "cardname": "다니엘 래드클리프",
+        "isnormal": true,
+        "attack": 9600,
+        "defense": 8,
+        "life": 56800,
+        "img_url": "card_img/다니엘래드클리프.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 13,
+    "fields": {
+        "cardname": "덤블도어",
+        "isnormal": true,
+        "attack": 9800,
+        "defense": 9,
+        "life": 57300,
+        "img_url": "card_img/덤블도어.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 14,
+    "fields": {
+        "cardname": "라이언 레이놀즈",
+        "isnormal": true,
+        "attack": 10200,
+        "defense": 7,
+        "life": 58400,
+        "img_url": "card_img/라이언레이놀즈.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 15,
+    "fields": {
+        "cardname": "마크 러팔로",
+        "isnormal": true,
+        "attack": 9930,
+        "defense": 9,
+        "life": 58000,
+        "img_url": "card_img/마크러팔로.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 16,
+    "fields": {
+        "cardname": "베네딕트 컴버배치",
+        "isnormal": true,
+        "attack": 9860,
+        "defense": 8,
+        "life": 57500,
+        "img_url": "card_img/베네딕트컴버배치.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 17,
+    "fields": {
+        "cardname": "오연서",
+        "isnormal": true,
+        "attack": 9300,
+        "defense": 6,
+        "life": 55900,
+        "img_url": "card_img/오연서.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 18,
+    "fields": {
+        "cardname": "유연석",
+        "isnormal": true,
+        "attack": 9550,
+        "defense": 5,
+        "life": 57300,
+        "img_url": "card_img/유연석.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 19,
+    "fields": {
+        "cardname": "윤계상",
+        "isnormal": true,
+        "attack": 10100,
+        "defense": 6,
+        "life": 59200,
+        "img_url": "card_img/윤계상.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 20,
+    "fields": {
+        "cardname": "이동욱",
+        "isnormal": true,
+        "attack": 9700,
+        "defense": 8,
+        "life": 59300,
+        "img_url": "card_img/이동욱.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 21,
+    "fields": {
+        "cardname": "톰 행크스",
+        "isnormal": true,
+        "attack": 9650,
+        "defense": 5,
+        "life": 58900,
+        "img_url": "card_img/톰행크스.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 22,
+    "fields": {
+        "cardname": "톰 히들스턴",
+        "isnormal": true,
+        "attack": 9560,
+        "defense": 4,
+        "life": 57000,
+        "img_url": "card_img/톰히들스턴.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 23,
+    "fields": {
+        "cardname": "한가인",
+        "isnormal": true,
+        "attack": 9420,
+        "defense": 5,
+        "life": 54000,
+        "img_url": "card_img/한가인.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 24,
+    "fields": {
+        "cardname": "핸리 카빌",
+        "isnormal": true,
+        "attack": 9500,
+        "defense": 3,
+        "life": 56700,
+        "img_url": "card_img/핸리카빌.png"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 25,
+    "fields": {
+        "cardname": "공유",
+        "isnormal": true,
+        "attack": 12500,
+        "defense": 4,
+        "life": 58000,
+        "img_url": "card_img/공유.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 26,
+    "fields": {
+        "cardname": "김혜수",
+        "isnormal": true,
+        "attack": 13000,
+        "defense": 5,
+        "life": 59000,
+        "img_url": "card_img/김혜수.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 27,
+    "fields": {
+        "cardname": "로버트 다우니 주니어",
+        "isnormal": true,
+        "attack": 12700,
+        "defense": 6,
+        "life": 58500,
+        "img_url": "card_img/로버트다우니주니어.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 28,
+    "fields": {
+        "cardname": "브래드 피트",
+        "isnormal": true,
+        "attack": 11800,
+        "defense": 4,
+        "life": 58800,
+        "img_url": "card_img/브래드피트.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 29,
+    "fields": {
+        "cardname": "스칼렛 요한슨",
+        "isnormal": true,
+        "attack": 12300,
+        "defense": 6,
+        "life": 59800,
+        "img_url": "card_img/스칼렛요한슨.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 30,
+    "fields": {
+        "cardname": "안젤리나 졸리",
+        "isnormal": true,
+        "attack": 11700,
+        "defense": 3,
+        "life": 58400,
+        "img_url": "card_img/안젤리나졸리.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 31,
+    "fields": {
+        "cardname": "엠마 왓슨",
+        "isnormal": true,
+        "attack": 11700,
+        "defense": 5,
+        "life": 56700,
+        "img_url": "card_img/엠마왓슨.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 32,
+    "fields": {
+        "cardname": "원빈",
+        "isnormal": true,
+        "attack": 12900,
+        "defense": 4,
+        "life": 59900,
+        "img_url": "card_img/원빈.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 33,
+    "fields": {
+        "cardname": "이정재",
+        "isnormal": true,
+        "attack": 12100,
+        "defense": 3,
+        "life": 60500,
+        "img_url": "card_img/이정재.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 34,
+    "fields": {
+        "cardname": "임수정",
+        "isnormal": true,
+        "attack": 11200,
+        "defense": 6,
+        "life": 58600,
+        "img_url": "card_img/임수정.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 35,
+    "fields": {
+        "cardname": "콜린 퍼스",
+        "isnormal": true,
+        "attack": 13000,
+        "defense": 5,
+        "life": 58800,
+        "img_url": "card_img/콜린퍼스.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 36,
+    "fields": {
+        "cardname": "크리스 에반스",
+        "isnormal": true,
+        "attack": 12300,
+        "defense": 6,
+        "life": 57800,
+        "img_url": "card_img/크리스에반스.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 37,
+    "fields": {
+        "cardname": "톰 홀랜드",
+        "isnormal": true,
+        "attack": 10900,
+        "defense": 4,
+        "life": 56500,
+        "img_url": "card_img/톰홀랜드.png"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 38,
+    "fields": {
+        "cardname": "헤르미온느",
+        "isnormal": true,
+        "attack": 11400,
+        "defense": 5,
+        "life": 55500,
+        "img_url": "card_img/헤르미온느.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 39,
+    "fields": {
+        "cardname": "황정민",
+        "isnormal": true,
+        "attack": 12100,
+        "defense": 3,
+        "life": 57500,
+        "img_url": "card_img/황정민.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 40,
+    "fields": {
+        "cardname": "김대명",
+        "isnormal": true,
+        "attack": 9800,
+        "defense": 4,
+        "life": 62500,
+        "img_url": "card_img/김대명.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 41,
+    "fields": {
+        "cardname": "김윤석",
+        "isnormal": true,
+        "attack": 9850,
+        "defense": 6,
+        "life": 61900,
+        "img_url": "card_img/김윤석.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 42,
+    "fields": {
+        "cardname": "김태리",
+        "isnormal": true,
+        "attack": 9700,
+        "defense": 3,
+        "life": 62000,
+        "img_url": "card_img/김태리.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 43,
+    "fields": {
+        "cardname": "박은빈",
+        "isnormal": true,
+        "attack": 9600,
+        "defense": 5,
+        "life": 62600,
+        "img_url": "card_img/박은빈.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 44,
+    "fields": {
+        "cardname": "송승헌",
+        "isnormal": true,
+        "attack": 9850,
+        "defense": 3,
+        "life": 62800,
+        "img_url": "card_img/송승헌.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 45,
+    "fields": {
+        "cardname": "엠마 스톤",
+        "isnormal": true,
+        "attack": 9680,
+        "defense": 4,
+        "life": 62200,
+        "img_url": "card_img/엠마스톤.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 46,
+    "fields": {
+        "cardname": "이민정",
+        "isnormal": true,
+        "attack": 9640,
+        "defense": 4,
+        "life": 63200,
+        "img_url": "card_img/이민정.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 47,
+    "fields": {
+        "cardname": "제레미 레너",
+        "isnormal": true,
+        "attack": 9850,
+        "defense": 3,
+        "life": 63100,
+        "img_url": "card_img/제레미레너.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 48,
+    "fields": {
+        "cardname": "조진웅",
+        "isnormal": true,
+        "attack": 9920,
+        "defense": 2,
+        "life": 63000,
+        "img_url": "card_img/조진웅.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 49,
+    "fields": {
+        "cardname": "채수빈",
+        "isnormal": true,
+        "attack": 9520,
+        "defense": 6,
+        "life": 62100,
+        "img_url": "card_img/채수빈.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 50,
+    "fields": {
+        "cardname": "크리스 헴스워스",
+        "isnormal": true,
+        "attack": 9870,
+        "defense": 5,
+        "life": 63100,
+        "img_url": "card_img/크리스헴스워스.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 51,
+    "fields": {
+        "cardname": "톰 펠턴",
+        "isnormal": true,
+        "attack": 9670,
+        "defense": 4,
+        "life": 63300,
+        "img_url": "card_img/톰펠턴.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 52,
+    "fields": {
+        "cardname": "하지원",
+        "isnormal": true,
+        "attack": 9770,
+        "defense": 5,
+        "life": 62300,
+        "img_url": "card_img/하지원.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 53,
+    "fields": {
+        "cardname": "해그리드",
+        "isnormal": true,
+        "attack": 9850,
+        "defense": 7,
+        "life": 63300,
+        "img_url": "card_img/해그리드.jpg"
+    }
+},
+{
+    "model": "worlds.card",
+    "pk": 54,
+    "fields": {
+        "cardname": "히스 레저",
+        "isnormal": true,
+        "attack": 10050,
+        "defense": 4,
+        "life": 62900,
+        "img_url": "card_img/히스레저.jpg"
+    }
+}
+]

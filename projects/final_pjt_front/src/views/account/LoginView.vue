@@ -2,9 +2,9 @@
 	<div>
 		<h1>Login</h1>
 		<div class="login-box">
-			<form @submit.prevent="goIndex" class="form-box" action="">
-				<input id="userid" placeholder="아이디 입력부탁!!" type="text" />
-				<input placeholder="비밀번호 !!" type="text" />
+			<form @submit.prevent="logIn" class="form-box">
+				<input id="userid" placeholder="아이디 입력부탁!!" v-model="username" type="text" />
+				<input placeholder="비밀번호 !!" v-model="password" type="text" />
 				<input type="submit" value="로그인">
 			</form>
 		</div>
@@ -12,18 +12,42 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
 	name: "LoginView",
-	components: {},
+	data() {
+		return {
+			username: null,
+			password: null,
+		}
+	},
 	methods: {
-		goIndex() {
+		logIn() {
+			console.log('로그인오오ㅗㅇ오오오냐')
+			axios({
+				method: 'post',
+				url: `http://127.0.0.1:8000/accounts/login/`,
+				data: {
+					'username': this.username,
+					'password': this.password,
+				},
+				})
+					.then((res) => {
+						this.$store.state.token = res.data.key;
+						this.$store.dispatch('userData');
+					})
+					.catch((err) => {
+						console.log(err);
+					})
+
 			this.$router.push('index');
 		}
 	}
 };
 </script>
 
-<style >
+<style scoped>
 .login-box {
 	display: flex;
 	justify-content: center;
@@ -32,7 +56,7 @@ export default {
 }
 
 .form-box {
-	border: 1px solid plum;
+	border: 1px solid #260712;
 	width: 500px;
 	height: 400px;
 	display: flex;

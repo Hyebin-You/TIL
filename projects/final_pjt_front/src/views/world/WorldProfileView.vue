@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>WorldProfile</h1>
-    <ProfileIconListItem/>
+    <PublicIconListItem/>
     <WorldProfileBattleLogList/>
     <WorldProfileCube/>
     <WorldDeck/>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ProfileIconListItem from '@/components/ProfileIconListItem'
+import PublicIconListItem from '@/components/PublicIconListItem'
 import WorldProfileBattleLogList from '@/components/world/profile/WorldProfileBattleLogList'
 import WorldProfileCube from '@/components/world/profile/WorldProfileCube'
 import WorldDeck from '@/components/world/profile/WorldDeck'
@@ -19,7 +19,7 @@ import WorldCardDetail from '@/components/world/profile/WorldCardDetail'
 export default {
   name: 'WorldProfileView',
   components: {
-    ProfileIconListItem,
+    PublicIconListItem,
     WorldProfileBattleLogList,
     WorldProfileCube,
     WorldDeck,

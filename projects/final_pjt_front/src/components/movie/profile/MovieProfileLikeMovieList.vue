@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<h3>MovieProfileLikeMovieList</h3>
-		<LikeMovieListItem />
+		<div v-for="movie in myMovieList" :key="movie.id">
+			<!-- <LikeMovieListItem /> -->
+		</div>
 	</div>
 </template>
 
@@ -11,8 +13,13 @@ import LikeMovieListItem from "@/components/movie/profile/LikeMovieListItem";
 export default {
 	name: "MovieProfileLikeMovieList",
 	components: {
-		LikeMovieListItem,
+		// LikeMovieListItem,
 	},
+	data() {
+		return {
+			myMovieList: null,
+		}
+	}
 };
 </script>
 

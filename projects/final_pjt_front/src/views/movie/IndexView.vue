@@ -1,20 +1,39 @@
 <template>
-	<div>
+	<div class="index-box" v-if="video">
 		<DetailView />
-		<h1>Index</h1>
-		<IndexLatestList />
-		<transition appear name="slide-fade" mode="out-in">
-			<IndexLikeList />
-		</transition>
-		<transition appear name="slide-fade2" mode="out-in">
-			<IndexRandomList />
-		</transition>
+		<div class="iframe-title">
+			<div>
+				<div>{{ video.title }}</div>
+				<div>{{ video.overview }}</div>
+				<!-- <div v-for="genre in videoGenre" :key="genre">{{ genre }}</div> -->
+				<span v-for="genre in videoGenre" :key="genre">{{ genre }}</span>
+			</div>
+		</div>
+		<div class="iframe-box">
+			<div class="iframe-shadow"></div>
+			<iframe
+				width="100%;"
+				height="100%"
+				:src="`https://www.youtube.com/embed/${video.video_key}?autoplay=1&mute=1&loop=1&rel=0&controls=0&showinfo=0`"
+				frameborder="0"
+				allow="encrypted-media; autoplay;"></iframe>
+		</div>
+		<div style="padding-top: 700px">
+			<transition appear name="slide-fade" mode="out-in">
+				<IndexLikeList />
+			</transition>
+			<transition appear name="slide-fade2" mode="out-in">
+				<IndexRandomList />
+			</transition>
+		</div>
 		<MyMovieList />
 	</div>
 </template>
 
 <script>
-import IndexLatestList from "@/components/movie/index/IndexLatestList";
+import axios from "axios";
+import _ from "lodash";
+// import IndexLatestList from "@/components/movie/index/IndexLatestList";
 import IndexLikeList from "@/components/movie/index/IndexLikeList";
 import IndexRandomList from "@/components/movie/index/IndexRandomList";
 import MyMovieList from "@/components/movie/MyMovieList";
@@ -23,25 +42,50 @@ import DetailView from "@/views/movie/DetailView";
 export default {
 	name: "IndexView",
 	components: {
-		IndexLatestList,
+		// IndexLatestList,
 		IndexLikeList,
 		IndexRandomList,
 		MyMovieList,
 		DetailView,
 	},
+	data() {
+		return {
+			video: null,
+			videoGenre: [],
+		};
+	},
+	created() {
+		axios({
+			method: "get",
+			url: `http://127.0.0.1:8000/movies/search/latest/`,
+		})
+			.then(res => {
+				this.video = _.sample(res.data);
+				if (this.video.overview.length > 150) {
+					this.video.overview = this.video.overview.substr(0, 150) + '...';
+				}
+				this.video.genres.forEach(gen => {
+					this.videoGenre.push(gen.name);
+				});
+
+
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	},
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&100;300;500;800;display=swap");
 @font-face {
 	font-family: "maplestory";
 	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff")
 		format("woff");
 	font-weight: lighter;
-
 }
-
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
@@ -72,15 +116,18 @@ export default {
 	transform: translateX(30px);
 	opacity: 0;
 }
+.indexbox {
+	height: 100%;
+}
+
 .centerbox {
 	display: flex;
 	justify-content: center;
-	width: 2100px;
 }
 
 .titletext {
 	text-align: initial;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
 	/* font-family: "maplestory"; */
 	font-weight: lighter;
 	font-size: 25px;
@@ -135,6 +182,61 @@ export default {
 .marginbox {
 	margin-left: 200px;
 }
+.iframe-box {
+	position: absolute;
+	z-index: -99;
+	width: 100%;
+	height: 70%;
+	transform: scaleX(1.6) scaleY(1.15);
+}
+.iframe-title {
+	color: white;
+	position: absolute;
+	width: 100%;
+	height: 90%;
+	display: flex;
+	align-items: center;
+	left: 100px;
+}
+.iframe-title > div {
+	width: 1000px;
+	text-align: left;
+}
 
 
+.iframe-title > div > div:nth-child(1){
+	font-size: 50px;
+	font-weight: bolder;
+}
+.iframe-title > div > div:nth-child(2){
+	margin-top: 10px; 
+	width: 550px;
+	font-size: 20px;
+	font-weight: 300;
+}
+.iframe-title > div > span{
+	margin-top: 30px; 
+	font-size: 15px;
+	font-weight: 300;
+	border: solid 1px;
+	border-radius: 3px;
+	margin-right: 5px;
+	min-width: 78px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: #ffffff;
+	color: #4e4e4e;
+	font-weight: bold;
+	padding: 0 5px;
+}
+
+
+.iframe-shadow {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	/* background-color: red; */
+	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+}
 </style>

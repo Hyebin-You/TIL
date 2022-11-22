@@ -12,14 +12,20 @@ export default {
   props: {
     genre: String,
   },
+  data() {
+    return {
+    }
+  },
   methods: {
     selectGenre(event) {
-      // console.log(event.target.style.border);
-      event.target.style.color = 'plum';
-      event.target.style.border = '2px solid plum';
-    }
+        this.selectGenreItem = event.target.innerText;
+			// console.log('@@@@@@@@@@@', this.selectGenreItem);
+        event.target.classList.toggle('select-box');
+        this.$emit('genre-data', event.target.innerText);
+      }
+		}
   }
-}
+
 </script>
 
 <style scoped>
@@ -31,7 +37,7 @@ export default {
   padding: 0px 10px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   color: white;
 }
@@ -49,8 +55,9 @@ export default {
 
 .genre-box > p:hover {
   cursor: pointer;
-  color: palevioletred;
-  transition: all 0.5s;
+}
+.select-box {
+  color: #A63268;
 }
 
 

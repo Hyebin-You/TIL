@@ -2,7 +2,7 @@
 	<div class="centerbox">
 		<div>
 			<div class="wholebox">
-				<div class="titletext">이런 영화는 어떨까염?</div>
+				<div class="titletext">오늘 이 영화는 어떨까요</div>
 				<div class="container" v-if="randomList">
 					<carousel
 						:items="7"
@@ -46,7 +46,6 @@ export default {
 		})
 			.then(res => {
         this.randomList = res.data;
-				console.log("es@@@@@@@@@", res);
 			})
 			.catch(err => {
         console.log("error!!!!!", err);

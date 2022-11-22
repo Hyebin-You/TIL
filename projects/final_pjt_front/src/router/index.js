@@ -6,7 +6,6 @@ import LoginView from '@/views/account/LoginView'
 import IndexView from '@/views/movie/IndexView'
 import SearchView from '@/views/movie/SearchView'
 import MovieShopView from '@/views/movie/MovieShopView'
-import DetailView from '@/views/movie/DetailView'
 import MovieProfileView from '@/views/movie/MovieProfileView'
 import WorldIndexView from '@/views/world/WorldIndexView'
 import WorldProfileView from '@/views/world/WorldProfileView'
@@ -58,11 +57,6 @@ const routes = [
     path: '/movieshop',
     name: 'movieshop',
     component: MovieShopView
-  },
-  {
-    path: '/detail',
-    name: 'detail',
-    component: DetailView
   },
   {
     path: '/movieprofile',

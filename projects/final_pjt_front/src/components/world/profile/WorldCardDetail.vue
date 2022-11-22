@@ -1,10 +1,12 @@
 <template>
   <div>
+    <h1>CardDetail</h1>
+    <p></p>
     <!-- <img :src="require(`@/assets/actors/${Card.img_url}`)" alt=""> -->
-    <p>{{ Card.cardname }}</p>
-    <p>기본 공격력 : {{ Card.attack }}</p>
-    <p>기본 방어력 : {{ Card.defense }}</p>
-    <p>기본 체력 : {{ Card.life }}</p>
+    <p>{{ Card?.cardname }}</p>
+    <p>기본 공격력 : {{ Card?.attack }}</p>
+    <p>기본 방어력 : {{ Card?.defense }}</p>
+    <p>기본 체력 : {{ Card?.life }}</p>
     <p>보유 블랙 큐브 : {{ User.blackcube }}개</p>
     <p>보유 레드 큐브 : {{ User.redcube }}개</p>
     <button @click='useBlack'>블랙 큐브 사용하기</button>
@@ -25,7 +27,7 @@
 
 <script>
 import _ from 'lodash'
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
   name: 'WorldCardDetail',
@@ -41,6 +43,12 @@ export default {
     }
   },
   methods: {
+    sleep(ms) {
+      const wakeUpTime = Date.now() + ms;
+      while (Date.now() < wakeUpTime) {
+        console.log()
+      }
+    },
     randomAbility(grade) {
       let abilityList
       if (grade === '에픽') {
@@ -51,15 +59,15 @@ export default {
         abilityList = this.legendAbility
       }
 
-      if (_.random(1, 100) <= 20) {
+      if (_.random(1, 100) <= 15) {
         return abilityList[0]
-      } else if (_.random(1, 100) > 20 && _.random(1, 100) <= 30) {
+      } else if (_.random(1, 100) > 15 && _.random(1, 100) <= 20) {
         return abilityList[1]
-      } else if (_.random(1, 100) > 30 && _.random(1, 100) <= 50) {
+      } else if (_.random(1, 100) > 20 && _.random(1, 100) <= 50) {
         return abilityList[2]
-      } else if (_.random(1, 100) > 50 && _.random(1, 100) <= 65) {
+      } else if (_.random(1, 100) > 50 && _.random(1, 100) <= 60) {
         return abilityList[3]
-      } else if (_.random(1, 100) > 65 && _.random(1, 100) <= 85) {
+      } else if (_.random(1, 100) > 60 && _.random(1, 100) <= 90) {
         return abilityList[4]
       } else {
         return abilityList[5]
@@ -87,6 +95,7 @@ export default {
         this.changedAbilityGrade = '레전드리'
       }
 
+      this.sleep(500)
       this.changedAbility1 = this.randomAbility(this.changedAbilityGrade)
       this.changedAbility2 = this.randomAbility(this.changedAbilityGrade)
       this.changedAbility3 = this.randomAbility(this.changedAbilityGrade)
@@ -98,7 +107,7 @@ export default {
       //     'cubename': 'black'
       //   },
       //   headers: {
-      //     Authorization: `Token ${this.$state.token}`
+      //     Authorization: `Token ${this.$store.state.token}`
       //   }
       // })
     },
@@ -124,37 +133,37 @@ export default {
         this.changedAbilityGrade = '레전드리'
       }
 
+      this.sleep(500)
       this.changedAbility1 = this.randomAbility(this.changedAbilityGrade)
       this.changedAbility2 = this.randomAbility(this.changedAbilityGrade)
       this.changedAbility3 = this.randomAbility(this.changedAbilityGrade)
 
-      // axios({
-      //   method: 'POST',
-      //   url: 'http://127.0.0.1:8000/accounts/use_cube/',
-      //   data: {
-      //     'cubename': 'red'
-      //   },
-      //   headers: {
-      //     Authorization: `Token ${this.$state.token}`
-      //   }
-      // })
+      axios({
+        method: 'POST',
+        url: 'http://127.0.0.1:8000/accounts/use_cube/',
+        data: {
+          'cubename': 'red'
+        },
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
     },
     sendResult() {
-      console.log('바껴라')
-      // axios({
-      //   method: 'post',
-      //   url: 'http://127.0.0.1:8000/accounts/modify_card/',
-      //   data: {
-      //     'card_pk': this.Card.id,
-      //     'ability_grade': this.changedAbilityGrade,
-      //     'ability1': this.changedAbility1,
-      //     'ability2': this.changedAbility2,
-      //     'ability3': this.changedAbility3
-      //   },
-      //   headers: {
-      //     Authorization: `Token ${this.$state.token}`
-      //   }
-      // })
+      axios({
+        method: 'post',
+        url: 'http://127.0.0.1:8000/accounts/modify_card/',
+        data: {
+          'card_pk': this.Card.id,
+          'ability_grade': this.changedAbilityGrade,
+          'ability1': this.changedAbility1,
+          'ability2': this.changedAbility2,
+          'ability3': this.changedAbility3
+        },
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
     }
   },
   computed: {
@@ -162,16 +171,16 @@ export default {
       return this.$store.state.detailUsercard;
     },
     ability_grade() {
-      return this.$store.state.detailUsercard.ability_grade
+      return this.$store.state.detailUsercard?.ability_grade
     },
     ability1() {
-      return this.$store.state.detailUsercard.ability1
+      return this.$store.state.detailUsercard?.ability1
     },
     ability2() {
-      return this.$store.state.detailUsercard.ability2
+      return this.$store.state.detailUsercard?.ability2
     },
     ability3() {
-      return this.$store.state.detailUsercard.ability3
+      return this.$store.state.detailUsercard?.ability3
     },
     User() {
       return this.$store.state.userObject
