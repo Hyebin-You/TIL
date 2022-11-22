@@ -1,11 +1,20 @@
 <template>
   <div>
+    <WorldCardDetail/>
     <h1>WorldProfile</h1>
     <PublicIconListItem/>
     <WorldProfileBattleLogList/>
     <WorldProfileCube/>
-    <WorldDeck/>
-    <WorldCardDetail/>
+    <div style="display: flex">
+      <WorldDeck
+        deck-name='Attack List'
+        :deck-list='user.attacklist_set[0]'
+      />
+      <WorldDeck
+        deck-name='Defense List'
+        :deck-list='user.defenselist_set[0]'
+      />
+    </div>
   </div>
 </template>
 
@@ -24,6 +33,11 @@ export default {
     WorldProfileCube,
     WorldDeck,
     WorldCardDetail
+  },
+  computed: {
+    user() {
+      return this.$store.state.userObject
+    }
   }
 }
 </script>

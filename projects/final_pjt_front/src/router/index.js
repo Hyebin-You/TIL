@@ -90,7 +90,7 @@ const routes = [
     component: DummyView
   },
   {
-    paht: '/playlist',
+    path: '/playlist',
     name: 'playlist',
     component: MoviePlayListDetailView
   },

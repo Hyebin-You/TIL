@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>WorldIndexView</h1>
-    <WorldRankingList/>
     <WorldIndexNavBar/>
+    <WorldRankingList/>
   </div>
 </template>
 

@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <h1>CardDetail</h1>
-    <p></p>
-    <!-- <img :src="require(`@/assets/actors/${Card.img_url}`)" alt=""> -->
+<div>
+  <h1>CardDetail</h1>
+    <img :src="require(`@/assets/${Card?.img_url}`)" alt="없넹...">
     <p>{{ Card?.cardname }}</p>
     <p>기본 공격력 : {{ Card?.attack }}</p>
     <p>기본 방어력 : {{ Card?.defense }}</p>
@@ -100,16 +99,22 @@ export default {
       this.changedAbility2 = this.randomAbility(this.changedAbilityGrade)
       this.changedAbility3 = this.randomAbility(this.changedAbilityGrade)
       
-      // axios({
-      //   method: 'POST',
-      //   url: 'http://127.0.0.1:8000/accounts/use_cube/',
-      //   data: {
-      //     'cubename': 'black'
-      //   },
-      //   headers: {
-      //     Authorization: `Token ${this.$store.state.token}`
-      //   }
-      // })
+      axios({
+        method: 'POST',
+        url: 'http://127.0.0.1:8000/accounts/use_cube/',
+        data: {
+          'cubename': 'black'
+        },
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then((res) => {
+        this.$store.dispatch('userData')
+      })
+      .catch((err) =>{
+        console.log('블큡 사용함수 에러', err)
+      })
     },
     useRed() {
       if (this.User.redcube === 0) {
@@ -148,6 +153,12 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
+      .then((res) => {
+        this.$store.dispatch('userData')
+      })
+      .catch((err) =>{
+        console.log('레큡 사용함수 에러', err)
+      })
     },
     sendResult() {
       axios({
@@ -164,7 +175,13 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-    }
+      .then((res) => {
+        this.$store.dispatch('userData')
+      })
+      .catch((err) =>{
+        console.log('결과반영 사용함수 에러', err)
+      })
+    },
   },
   computed: {
     Card() {
@@ -184,11 +201,11 @@ export default {
     },
     User() {
       return this.$store.state.userObject
-    }
+    },
   }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

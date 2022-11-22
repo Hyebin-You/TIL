@@ -49,6 +49,7 @@ export default new Vuex.Store({
       state.playlist = play_list;
     },
     SHOW_USERCARD_DETAIL(state, usercard) {
+      // state.detailBoxShadowStyle = '';
       state.detailUsercard = usercard;
     }
   },

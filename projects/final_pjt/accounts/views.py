@@ -114,4 +114,5 @@ def use_cube(request):
     else:
         user.redcube -= 1
     
+    user.save()
     return Response(status=status.HTTP_200_OK)
