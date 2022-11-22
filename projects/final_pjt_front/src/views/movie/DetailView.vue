@@ -46,7 +46,7 @@ export default {
 			if (event.target.id === "dropshadow") {
 				const bodyScroll = document.querySelector("body");
 				bodyScroll.style.overflowY = "scroll";
-				this.$store.state.detailBoxShadowStyle = "none";
+				this.$store.commit('OFF_DETAIL')
 			}
 		},
 	},

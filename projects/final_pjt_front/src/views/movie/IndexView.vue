@@ -26,7 +26,7 @@
 				<IndexRandomList />
 			</transition>
 		</div>
-		<MyMovieList />
+		<PeoPleMovieList />
 	</div>
 </template>
 
@@ -36,7 +36,7 @@ import _ from "lodash";
 // import IndexLatestList from "@/components/movie/index/IndexLatestList";
 import IndexLikeList from "@/components/movie/index/IndexLikeList";
 import IndexRandomList from "@/components/movie/index/IndexRandomList";
-import MyMovieList from "@/components/movie/MyMovieList";
+import PeoPleMovieList from "@/components/movie/PeoPleMovieList";
 import DetailView from "@/views/movie/DetailView";
 
 export default {
@@ -45,7 +45,7 @@ export default {
 		// IndexLatestList,
 		IndexLikeList,
 		IndexRandomList,
-		MyMovieList,
+		PeoPleMovieList,
 		DetailView,
 	},
 	data() {

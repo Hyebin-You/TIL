@@ -3,12 +3,17 @@
 		PublicProfile
 		<div class="profile-info">
 			<div class="profile-img">
-				<img src="@/assets/people.png" alt="" />
+				<img src="@/assets/pink.png" alt="" />
 			</div>
 			<div class="info-list">
-				<div>여기는 아이디</div>
-				<div>여기는 티어</div>
-				<div>여기는 포인트</div>
+				<div>닉네임 : {{ userObject.nickname }}</div>
+				<div>티어 :{{ userObject.tier }}</div>
+				<div>포인트 : {{ userObject.point }}</div>
+				<div>승점 : {{ userObject.win_point }}</div>
+			</div>
+			<div class="info-deck">
+				<div>{{ userObject.attacklist_set[0] }}</div>
+				<div>{{ userObject.defenselist_set[0] }}</div>
 			</div>
 		</div>
 	</div>
@@ -17,6 +22,11 @@
 <script>
 export default {
 	name: "PublicProfile",
+	computed: {
+		userObject() {
+			return this.$store.state.userObject;
+		}
+	}
 };
 </script>
 
@@ -47,4 +57,9 @@ export default {
   justify-content: space-evenly;
   width: 200px;
 }
+.info-deck {
+	display: flex;
+
+}
+
 </style>

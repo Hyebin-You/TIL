@@ -1,5 +1,5 @@
 <template>
-	<div class="test" @click="showDetail">
+	<div :style="{ left: leftSize }" class="size-layer" @click="showDetail">
 		<img
 			:src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
 			alt="movie" />
@@ -18,12 +18,18 @@ export default {
 	name: "LikeMovieListItem",
 	props: {
 		movie: Object,
+		index: Number,
+	},
+	data() {
+		return {
+			// leftSize: '100px',
+		}
 	},
 	methods: {
     showDetail() {
 			const bodyScroll = document.querySelector('body');
 			bodyScroll.style.overflow = 'hidden';
-			// TODO: Vuestyle로 수정
+
 			axios({
 				methods: 'get',
 				url: `http://127.0.0.1:8000/movies/movie_detail/${this.movie.id}/`
@@ -37,6 +43,13 @@ export default {
 				})
     }
   },
+	computed: {
+		leftSize() {
+			console.log('!!!@@@!!', typeof(`${this.index * 10}px`));
+			const value = this.index * 50
+			return `${value}px`
+		}
+	}
 };
 </script>
 
@@ -49,6 +62,7 @@ export default {
 	font-style: normal;
 }
 
+
 .text-hidden {
 	display: flex;
 	align-items: center;
@@ -57,7 +71,6 @@ export default {
 	height: 100%;
 	opacity: 0;
 	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
-	/* background-color: rgba(0, 0, 0, 0.7); */
 	cursor: pointer;
 	position: absolute;
 	top: 0%;
@@ -68,21 +81,22 @@ export default {
 	opacity: 1;
 	color: white;
 	transition: all 1s;
-	/* background-image: brightness(0.5); */
+
 }
 
 .text-hidden > p {
 	max-width: 150px;
-	font-size: 20px;
+	font-size: 15px;
 	font-weight: 500;
 	padding-top: 150px;
-	/* padding-top: 200px; */
-	/* text-align: left; */
 	word-break: break-all;
 }
 img {
 	width: 100%;
 	border-radius: 5px;
 }
-
+.size-layer {
+	position: absolute;
+	left: 0;
+}
 </style>

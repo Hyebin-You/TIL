@@ -10,6 +10,7 @@
 			<router-link :to="{ name: 'search' }">Search</router-link> |
 			<router-link :to="{ name: 'movieshop' }">MovieShop</router-link> |
 			<router-link :to="{ name: 'movieprofile' }">MovieProfile</router-link> |
+      <router-link :to="{ name: 'playlist' }">Playlist</router-link> |
 			<router-link :to="{ name: 'worldindex' }">WorldIndex</router-link> |
 			<router-link :to="{ name: 'worldprofile' }">WorldProfile</router-link> |
 			<router-link :to="{ name: 'worldfight' }">WorldFight</router-link> |

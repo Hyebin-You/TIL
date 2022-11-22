@@ -18,11 +18,16 @@ export default new Vuex.Store({
     detailBoxShadowStyle: 'none',
     detailMovie: null,
     searchList: null,
+    playList: null,
     detailUsercard: null,
   },
   getters: {
   },
   mutations: {
+    OFF_DETAIL(state) {
+      //detailBosShadowStyle => flex or none
+      state.detailBoxShadowStyle = 'none'
+    },
     SHOW_DETAIL(state, movie) {
       //detailBosShadowStyle => flex or none
       state.detailBoxShadowStyle = '';
@@ -36,6 +41,12 @@ export default new Vuex.Store({
     },
     USER_DATA(state, user_data) {
       state.userObject = user_data;
+    },
+    SAVE_TOKEN(state, token) {
+      state.token = token;
+    },
+    SAVE_PLAYLIST(state, play_list) {
+      state.playlist = play_list;
     },
     SHOW_USERCARD_DETAIL(state, usercard) {
       state.detailUsercard = usercard;

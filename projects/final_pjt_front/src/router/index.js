@@ -13,6 +13,7 @@ import WorldFightView from '@/views/world/WorldFightView'
 import WorldShopView from '@/views/world/WorldShopView'
 import SignUpNickNameView from '@/views/account/SignUpNickNameView'
 import SignUpLikeGenreListView from '@/views/account/SignUpLikeGenreListView'
+import MoviePlayListDetailView from '@/views/movie/MoviePlayListDetailView'
 import DummyView from '@/views/account/DummyView'
 
 Vue.use(VueRouter)
@@ -88,8 +89,13 @@ const routes = [
     name: 'dummy',
     component: DummyView
   },
+  {
+    paht: '/playlist',
+    name: 'playlist',
+    component: MoviePlayListDetailView
+  },
 
-
+  
 ]
 
 const router = new VueRouter({

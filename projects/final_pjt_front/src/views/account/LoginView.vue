@@ -34,7 +34,7 @@ export default {
 				},
 				})
 					.then((res) => {
-						this.$store.state.token = res.data.key;
+						this.$store.commit('SAVE_TOKEN', res.data.key);
 						this.$store.dispatch('userData');
 					})
 					.catch((err) => {
