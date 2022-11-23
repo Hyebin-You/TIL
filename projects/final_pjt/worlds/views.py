@@ -4,8 +4,8 @@ from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import RankSerializer, RankcommentSerializer
-from .models import Battlelog, Rankcomment
+from .serializers import RankSerializer, RankcommentSerializer, ProfiliconSerializer
+from .models import Battlelog, Rankcomment, Profile_icon
 from accounts.models import Defenselist
 from accounts.serializers import DefenselistSerializer
 import random
@@ -17,7 +17,6 @@ User = get_user_model()
 @api_view(['GET'])
 def ranklist(request):
     users = User.objects.all()
-    print(users[0].battlelog_set.all())
     users = sorted(users, key=lambda x: (-x.win_point, len(x.battlelog_set.all())))
     serializer = RankSerializer(users, many=True)
     return Response(serializer.data)
@@ -49,7 +48,7 @@ def make_battlelog(request):
 
 @api_view(['GET'])
 def rankcomment_list(request):
-    rcomment_list = Rankcomment.objects.all()
+    rcomment_list = Rankcomment.objects.all().order_by('-pk')
     serializer = RankcommentSerializer(rcomment_list, many=True)
     return Response(serializer.data)
 
@@ -147,3 +146,10 @@ def get_my_status(request):
         'card3': c3_info
     }
     return JsonResponse(my_status)
+
+
+@api_view(['GET'])
+def iconlists(request):
+    icons = Profile_icon.objects.all().order_by('price')
+    serializer = ProfiliconSerializer(icons, many=True)
+    return Response(serializer.data)

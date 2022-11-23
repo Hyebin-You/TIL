@@ -2,7 +2,7 @@ from .models import Usercard, Attacklist, Defenselist
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from movies.serializers import PlaylistSerializer, MovieListSerializer, GenreSerializer
-from worlds.serializers import BattlelogSerializer
+from worlds.serializers import BattlelogSerializer, ProfiliconSerializer
 
 User = get_user_model()
 
@@ -44,8 +44,9 @@ class CustomUserdetailSerializer(serializers.ModelSerializer):
     usercard_set = UsercardSerializer(many=True, read_only=True)
     like_movies = MovieListSerializer(many=True, read_only=True)
     like_genres = GenreSerializer(many=True, read_only=True)
+    icons = ProfiliconSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
         fields = ('username', 'nickname', 'point', 'tier', 'win_point', 'blackcube', 'redcube', 'like_genres',
-            'playlist_set', 'attacklist_set', 'defenselist_set', 'battlelog_set', 'usercard_set', 'like_movies')
+            'playlist_set', 'attacklist_set', 'defenselist_set', 'battlelog_set', 'usercard_set', 'like_movies', 'icons', 'user_icon')

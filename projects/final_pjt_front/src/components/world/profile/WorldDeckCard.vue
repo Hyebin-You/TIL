@@ -1,6 +1,6 @@
 <template>
   <!-- 아래의 div 태그에 @click="showUsercardDetail(card)" -->
-  <div class="test" :class="{'isGold' : !card.isnormal}">
+  <div class="test" @click="showUsercardDetail" :class="{'isGold' : !card.isnormal}">
     <img :src="require(`@/assets/${card.img_url}`)" alt="card img">
     <div class="text-hidden">
       <p style="font-size: 13px">{{ card.cardname }}</p>
@@ -19,11 +19,11 @@ export default {
     card: Object,
   },
   methods: {
-    // showUsercardDetail(card) {
-    //   const bodyScroll = document.querySelector('body')
-		// 	bodyScroll.style.overflow = 'hidden'
-    //   this.$store.commit('SHOW_USERCARD_DETAIL', card)
-    // }
+    showUsercardDetail() {
+      const bodyScroll = document.querySelector('body');
+			bodyScroll.style.overflow = 'hidden';
+      this.$store.commit('SHOW_USERCARD_DETAIL', this.card)
+    }
   }
 }
 </script>

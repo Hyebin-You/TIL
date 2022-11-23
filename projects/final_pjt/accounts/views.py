@@ -6,7 +6,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import CustomUserdetailSerializer, UsercardSerializer
 from .models import Usercard, Attacklist, Defenselist
-from worlds.models import Card
+from worlds.models import Card, Profile_icon
+from worlds.serializers import ProfiliconSerializer
 from movies.models import Genre
 
 User = get_user_model()
@@ -20,6 +21,7 @@ def user_detail(request):
 
 @api_view(['POST'])
 def make_usercards(request):
+    user = request.user
     card = Card.objects.get(pk=request.data['card_pk'])
     usercard = Usercard()
     usercard.cardname = card.cardname
@@ -32,8 +34,10 @@ def make_usercards(request):
     usercard.ability2 = request.data['ability2']
     usercard.ability3 = request.data['ability3']
     usercard.ability_grade = '에픽'
-    usercard.user = request.user
+    usercard.user = user
     usercard.save()
+    user.point -= 400
+    user.save()
     serializer = UsercardSerializer(usercard)
     return Response(serializer.data)
 
@@ -114,5 +118,26 @@ def use_cube(request):
     else:
         user.redcube -= 1
     
+    user.save()
+    return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def buy_icon(request):
+    user = request.user
+    price = request.data['price']
+    icon = Profile_icon.objects.get(pk=request.data['icon_id'])
+    if not icon.users.filter(pk=request.user.pk).exists():
+        icon.users.add(user)
+        user.point -= int(price)
+        user.save()
+    return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['PUT'])
+def change_usericon(request):
+    user = request.user
+    icon_url = request.data['img_url']
+    user.user_icon = icon_url
     user.save()
     return Response(status=status.HTTP_200_OK)

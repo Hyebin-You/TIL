@@ -4,6 +4,14 @@
 		<PublicIconList />
 		<WorldShopCube />
     <button @click="getCards">카드 뽑기</button>
+    <div style="display: flex" class='item-size-box'>
+      <WorldDeckCard
+        v-for="card in cardList"
+        :key='card.id'
+        :card='card'
+        class='eventhover'
+      />
+    </div>
     <br>
     <!-- <img v-for="(card, index) in cardList" :key='index' :src="require(`@/assets/actors/${card.img_url}`)"> -->
     <br>
@@ -19,6 +27,7 @@
 <script>
 import PublicIconList from "@/components/PublicIconList";
 import WorldShopCube from "@/components/world/shop/WorldShopCube";
+import WorldDeckCard from "@/components/world/profile/WorldDeckCard"
 import _ from 'lodash'
 import axios from 'axios'
 
@@ -27,6 +36,7 @@ export default {
 	components: {
 		PublicIconList,
 		WorldShopCube,
+    WorldDeckCard
 	},
   data() {
     return {
@@ -39,6 +49,12 @@ export default {
     }
   },
   methods: {
+    sleep(ms) {
+      const wakeUpTime = Date.now() + ms;
+      while (Date.now() < wakeUpTime) {
+        console.log()
+      }
+    },
     getability() {
       const num = _.random(1, 100)
       if (1 <= num && num < 21) {
@@ -80,18 +96,33 @@ export default {
         }
       })
       .then((res) => {
-        console.log('생성')
-        console.log(res.data)
         this.cardList.push(res.data)
       })
     }
     ,
     getCards() {
+      const result = confirm(`카드 5장을 뽑으시겠습니까? 2000포인트가 소모됩니다.
+      보유 포인트 : ${this.user.point}`)
+      if (result) {
+        if (this.user.point < 2000) {
+          alert('포인트가 모자랍니다!!!')
+          return
+        }
+      } else {
+        return
+      }
+      this.cardList = []
       this.getCard()
+      this.sleep(100)
       this.getCard()
+      this.sleep(100)
       this.getCard()
+      this.sleep(100)
       this.getCard()
+      this.sleep(100)
       this.getCard()
+      this.sleep(500)
+      this.$store.dispatch('userData')
     },
     buyBlackCube() {
       const result = confirm(`블랙큐브를 ${this.buy_black}개 구매하시겠습니까?`)
@@ -110,6 +141,7 @@ export default {
         .then(() => {
           alert(`블랙큐브 ${this.buy_black}개 구매에 성공했습니다!`);
           this.buy_black = null
+          this.$store.dispatch('userData')
           })
         .catch(() => {
           alert('가지고 있는 포인트가 부족하여 구매에 실패했습니다. 보유 포인트를 확인하고 구매해주세요!')
@@ -136,17 +168,46 @@ export default {
         .then(() => {
           alert(`레드큐브 ${this.buy_red}개 구매에 성공했습니다!`);
           this.buy_red = null
+          this.$store.dispatch('userData')
           })
         .catch(() => {
           alert('가지고 있는 포인트가 부족하여 구매에 실패했습니다. 보유 포인트를 확인하고 구매해주세요!')
           this.buy_red = null
+          
         })
       } else {
         this.buy_red = null
       }
     }
+  },
+  computed: {
+    user() {
+      return this.$store.state.userObject
+    }
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+.img-sizing {
+  height: 300px;
+}
+.item-size-box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+
+}
+.eventhover {
+	width: 140px;
+	transform: scale(0.9);
+}
+
+.eventhover:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+	transition: all 1s;
+  z-index: 100;
+}
+</style>

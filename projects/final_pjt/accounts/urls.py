@@ -11,4 +11,6 @@ urlpatterns = [
     path('set_like_genres/<str:genre_name>/', views.set_like_genres, name='set_like_genres'),
     path('modify_card/', views.modify_card, name='modify_card'),
     path('use_cube/', views.use_cube, name='use_cube'),
+    path('buy_icon/', views.buy_icon, name='buy_icon'),
+    path('change_usericon/', views.change_usericon, name='change_usericon'),
 ]

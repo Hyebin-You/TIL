@@ -1,27 +1,45 @@
 <template>
-<div>
-  <h1>CardDetail</h1>
-    <img :src="require(`@/assets/${Card?.img_url}`)" alt="없넹...">
-    <p>{{ Card?.cardname }}</p>
-    <p>기본 공격력 : {{ Card?.attack }}</p>
-    <p>기본 방어력 : {{ Card?.defense }}</p>
-    <p>기본 체력 : {{ Card?.life }}</p>
-    <p>보유 블랙 큐브 : {{ User.blackcube }}개</p>
-    <p>보유 레드 큐브 : {{ User.redcube }}개</p>
-    <button @click='useBlack'>블랙 큐브 사용하기</button>
-    <button @click='useRed'>레드 큐브 사용하기</button>
-    <p>잠재능력 등급 : {{ ability_grade }}</p>
-    <p>ability1 : {{ ability1 }}</p>
-    <p>ability2 : {{ ability2 }}</p>
-    <p>ability3 : {{ ability3 }}</p>
-    <hr>
-    <p>큐브를 돌린 결과</p>
-    <p>잠재능력 등급 : {{ changedAbilityGrade }}</p>
-    <p>ability1 : {{ changedAbility1 }}</p>
-    <p>ability2 : {{ changedAbility2 }}</p>
-    <p>ability3 : {{ changedAbility3 }}</p>
-    <button @click='sendResult'>해당 결과를 적용하시겠습니까?</button>
-  </div>
+  <transition name="fade-detail" mode="out-in">
+    <div
+      v-if="Card"
+      id="dropshadow"
+      :style="{ display: detailCardBoxShadowStyle }"
+      @click="detailCardOff"
+      class="dropshadow">
+      <div class="detailbox">
+        <h1>CardDetail</h1>
+        <div class="detail-flex">
+          <div>
+            <img :src="require(`@/assets/${Card?.img_url}`)" alt="없넹..."
+              :class="{'isGold': Card.isnormal}"
+              >
+            <p>{{ Card?.cardname }}</p>
+            <p>기본 공격력 : {{ Card?.attack }}</p>
+            <p>기본 방어력 : {{ Card?.defense }}</p>
+            <p>기본 체력 : {{ Card?.life }}</p>
+          </div>
+          <div>
+            <p>보유 블랙 큐브 : {{ User.blackcube }}개</p>
+            <p>보유 레드 큐브 : {{ User.redcube }}개</p>
+            <button @click='useBlack'>블랙 큐브 사용하기</button>
+            <button @click='useRed'>레드 큐브 사용하기</button>
+            <p>잠재능력 등급 : {{ ability_grade }}</p>
+            <p>ability1 : {{ ability1 }}</p>
+            <p>ability2 : {{ ability2 }}</p>
+            <p>ability3 : {{ ability3 }}</p>
+            <hr>
+            <p>큐브를 돌린 결과</p>
+            <p>잠재능력 등급 : {{ changedAbilityGrade }}</p>
+            <p>ability1 : {{ changedAbility1 }}</p>
+            <p>ability2 : {{ changedAbility2 }}</p>
+            <p>ability3 : {{ changedAbility3 }}</p>
+            <button @click='sendResult'>해당 결과를 적용하시겠습니까?</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -176,12 +194,20 @@ export default {
         }
       })
       .then((res) => {
+        console.log(res)
         this.$store.dispatch('userData')
       })
       .catch((err) =>{
         console.log('결과반영 사용함수 에러', err)
       })
     },
+    detailCardOff(event) {
+      if (event.target.id === "dropshadow") {
+        const bodyScroll = document.querySelector("body");
+				bodyScroll.style.overflowY = "scroll";
+				this.$store.commit('OFF_CARDDETAIL')
+      }
+    }
   },
   computed: {
     Card() {
@@ -202,10 +228,62 @@ export default {
     User() {
       return this.$store.state.userObject
     },
+    detailCardBoxShadowStyle() {
+      return this.$store.state.detailCardBoxShadowStyle
+    }
   }
 }
 </script>
 
 <style scoped>
+.hide {
+	display: none;
+}
+.detail-flex {
+	display: flex;
+	justify-content: space-evenly;
+}
 
+.dropshadow {
+	width: 100vw;
+	height: 200%;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: -100px;
+	z-index: 10;
+}
+
+.detailbox {
+	position: fixed;
+	top: 20px;
+	background-color: #161515;
+	border-radius: 5px;
+	width: 1200px;
+	height: 900px;
+}
+.fade-detail-enter-active {
+	transition: all 0.5s ease-out;
+}
+/* .fade-detail-leave-active {
+	transition: all 0.1s ease-out;
+} */
+
+.fade-detail-enter {
+	opacity: 0;
+}
+
+.fade-detail-leave-to {
+	opacity: 0;
+}
+
+img {
+  height: 500px;
+}
+
+.isGold {
+  border: solid 4px gold;
+}
 </style>

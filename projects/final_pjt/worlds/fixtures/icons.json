@@ -1,0 +1,232 @@
+[
+{
+    "model": "worlds.profile_icon",
+    "pk": 1,
+    "fields": {
+        "name": "bugcat",
+        "img_path": "icon/bugcat.png",
+        "price": 2000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 2,
+    "fields": {
+        "name": "gunbbang",
+        "img_path": "icon/gunbbang.png",
+        "price": 1500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 3,
+    "fields": {
+        "name": "lupin",
+        "img_path": "icon/lupin.png",
+        "price": 1800,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 4,
+    "fields": {
+        "name": "pepe1",
+        "img_path": "icon/pepe1.png",
+        "price": 2500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 5,
+    "fields": {
+        "name": "pepe2",
+        "img_path": "icon/pepe2.png",
+        "price": 2500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 6,
+    "fields": {
+        "name": "pinkbean",
+        "img_path": "icon/pinkbean.png",
+        "price": 3000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 7,
+    "fields": {
+        "name": "poo",
+        "img_path": "icon/poo.png",
+        "price": 1000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 8,
+    "fields": {
+        "name": "poong",
+        "img_path": "icon/poong.png",
+        "price": 1500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 9,
+    "fields": {
+        "name": "angel_slime",
+        "img_path": "icon/angel_slime.gif",
+        "price": 3000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 10,
+    "fields": {
+        "name": "black_slime",
+        "img_path": "icon/black_slime.gif",
+        "price": 2500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 11,
+    "fields": {
+        "name": "cube_blue",
+        "img_path": "icon/cube_blue.gif",
+        "price": 2800,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 12,
+    "fields": {
+        "name": "cube_rabbit",
+        "img_path": "icon/cube_rabbit.gif",
+        "price": 2800,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 13,
+    "fields": {
+        "name": "fairy",
+        "img_path": "icon/fairy.gif",
+        "price": 3000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 14,
+    "fields": {
+        "name": "lucid",
+        "img_path": "icon/lucid.gif",
+        "price": 5000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 15,
+    "fields": {
+        "name": "moo",
+        "img_path": "icon/moo.gif",
+        "price": 4000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 16,
+    "fields": {
+        "name": "mushroom",
+        "img_path": "icon/mushroom.gif",
+        "price": 2000,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 17,
+    "fields": {
+        "name": "pepe_punch",
+        "img_path": "icon/pepe_punch.gif",
+        "price": 2500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 18,
+    "fields": {
+        "name": "pinkbean_dance",
+        "img_path": "icon/pinkbean_dance.gif",
+        "price": 3500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 19,
+    "fields": {
+        "name": "pinkbean_eating",
+        "img_path": "icon/pinkbean_eating.gif",
+        "price": 3500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 20,
+    "fields": {
+        "name": "pinkbean_merong",
+        "img_path": "icon/pinkbean_merong.gif",
+        "price": 3500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 21,
+    "fields": {
+        "name": "pinkbean_move1",
+        "img_path": "icon/pinkbean_move1.gif",
+        "price": 3500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 22,
+    "fields": {
+        "name": "pinkbean_music",
+        "img_path": "icon/pinkbean_music.gif",
+        "price": 3500,
+        "users": []
+    }
+},
+{
+    "model": "worlds.profile_icon",
+    "pk": 23,
+    "fields": {
+        "name": "slime_moving",
+        "img_path": "icon/slime_moving.gif",
+        "price": 2500,
+        "users": []
+    }
+}
+]

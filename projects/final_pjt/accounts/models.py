@@ -10,6 +10,7 @@ class User(AbstractUser):
     nickname = models.CharField(max_length=8)
     blackcube = models.IntegerField(default=0)
     redcube = models.IntegerField(default=0)
+    user_icon = models.CharField(max_length=30, default="icon/people.png")
 
 
 class Usercard(models.Model):

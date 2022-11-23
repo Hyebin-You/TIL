@@ -16,10 +16,12 @@ export default new Vuex.Store({
     token: null,
     userObject: null,
     detailBoxShadowStyle: 'none',
+    detailCardBoxShadowStyle: 'none',
     detailMovie: null,
     searchList: null,
     playList: null,
     detailUsercard: null,
+    rankComment: null,
   },
   getters: {
   },
@@ -27,6 +29,9 @@ export default new Vuex.Store({
     OFF_DETAIL(state) {
       //detailBosShadowStyle => flex or none
       state.detailBoxShadowStyle = 'none'
+    },
+    OFF_CARDDETAIL(state) {
+      state.detailCardBoxShadowStyle = 'none'
     },
     SHOW_DETAIL(state, movie) {
       //detailBosShadowStyle => flex or none
@@ -49,8 +54,12 @@ export default new Vuex.Store({
       state.playlist = play_list;
     },
     SHOW_USERCARD_DETAIL(state, usercard) {
-      // state.detailBoxShadowStyle = '';
+      state.detailCardBoxShadowStyle = '';
       state.detailUsercard = usercard;
+      console.log(usercard)
+    },
+    RANKCOMMENTLIST(state, rcList) {
+      state.rankComment = rcList
     }
   },
   actions: {
@@ -87,6 +96,19 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err);
         })
+    },
+    getRankCommentList(context) {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/worlds/rankcomment_list/',
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then((res) => {
+        context.commit('RANKCOMMENTLIST', res.data)
+      })
+      .catch((err) => console.log(err))
     }
   },
   modules: {

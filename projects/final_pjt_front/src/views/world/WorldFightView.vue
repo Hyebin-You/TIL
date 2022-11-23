@@ -405,8 +405,16 @@ export default {
     },
     round_num () {
       return this.roundnum
+    },
+    user_tier () {
+      return this.$store.state.userObject.tier
     }
   },
+  watch: {
+    user_tier: function(val, oldval) {
+      alert(`티어가 ${oldval}에서 ${val}로 바뀌었습니다!`)
+    }
+  }
 };
 </script>
 

@@ -59,3 +59,10 @@ class RankcommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rankcomment
         fields = '__all__'
+
+
+class ProfiliconSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile_icon
+        fields = '__all__'

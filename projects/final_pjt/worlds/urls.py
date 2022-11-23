@@ -12,4 +12,5 @@ urlpatterns = [
     path('change_tier/', views.change_tier, name='change_tier'),
     path('get_enermy_status/', views.get_enermy_status, name='get_enermy_status'),
     path('get_my_status/', views.get_my_status, name='get_my_status'),
+    path('iconlists/', views.iconlists, name='iconlists'),
 ]
