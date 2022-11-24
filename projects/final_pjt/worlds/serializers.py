@@ -12,7 +12,7 @@ class BattlelogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Battlelog
         fields = '__all__'
-        read_only_fields = ('user',)
+        read_only_fields = ('user', 'enermy_nickname')
 
 
 class UsercardSimpleSerializer(serializers.ModelSerializer):
@@ -50,8 +50,8 @@ class RankSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'nickname', 'tier', 'win_point', 'attacklist_set', 'defenselist_set')
-        read_only_fields = ('username', 'nickname', 'tier', 'win_point')
+        fields = ('username', 'nickname', 'tier', 'win_point', 'attacklist_set', 'defenselist_set', 'user_icon')
+        read_only_fields = ('username', 'nickname', 'tier', 'win_point',)
 
 
 class RankcommentSerializer(serializers.ModelSerializer):

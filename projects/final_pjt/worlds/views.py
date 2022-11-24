@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RankSerializer, RankcommentSerializer, ProfiliconSerializer
 from .models import Battlelog, Rankcomment, Profile_icon
-from accounts.models import Defenselist
+from accounts.models import Defenselist, Attacklist
 from accounts.serializers import DefenselistSerializer
 import random
 
@@ -17,7 +17,11 @@ User = get_user_model()
 @api_view(['GET'])
 def ranklist(request):
     users = User.objects.all()
-    users = sorted(users, key=lambda x: (-x.win_point, len(x.battlelog_set.all())))
+    userlist = []
+    for user in users:
+        if user.attacklist_set.all()[0].card1 != None:
+            userlist.append(user)
+    users = sorted(userlist, key=lambda x: (-x.win_point, len(x.battlelog_set.all())))
     serializer = RankSerializer(users, many=True)
     return Response(serializer.data)
 
@@ -27,23 +31,31 @@ def make_battlelog(request):
     user = request.user
     
     if request.data['log'] == '승':
-        user.win_point += 100
+        user.win_point += 500
         user.save()
         log = Battlelog()
         log.log = '승리'
     else:
-        if user.win_point >= 50:
-            user.win_point -= 50
+        if user.win_point >= 500:
+            user.win_point -= 500
         user.save()
         log = Battlelog()
         log.log = '패배'
     
     enermy = User.objects.get(pk=request.data['enermy_id'])
-    # log.enermy_id = request.data['enermy_id']
     log.user = user
+    log.my_card1_img = request.data['my1img']
+    log.my_card2_img = request.data['my2img']
+    log.my_card3_img = request.data['my3img']
     log.enermy_nickname = enermy.nickname
+    log.enermy_card1_img = request.data['e1img']
+    log.enermy_card2_img = request.data['e2img']
+    log.enermy_card3_img = request.data['e3img']
     log.save()
-    return Response(status=status.HTTP_201_CREATED)
+    context = {
+        'user_winpoint': user.win_point,
+    }
+    return JsonResponse(context)
 
 
 @api_view(['GET'])
@@ -118,6 +130,7 @@ def calculate_card(card):
 @api_view(['GET'])
 def get_enermy_status(request):
     defenselists = Defenselist.objects.exclude(user_id=request.user.pk)
+    defenselists = defenselists.exclude(card1_id=None)
     defenselist = random.sample(list(defenselists), 1)
     enermy_nickname = defenselist[0].user.nickname
     c1_info = calculate_card(defenselist[0].card1)
@@ -135,7 +148,16 @@ def get_enermy_status(request):
 
 @api_view(['GET'])
 def get_my_status(request):
-    attacklist = Defenselist.objects.get(user_id=request.user.pk)
+    if request.user.attacklist_set.all()[0].card1 == None:
+        my_status = {
+            'my_nickname': request.user.nickname,
+            'card1': None,
+            'card2': None,
+            'card3': None
+        }
+        return JsonResponse(my_status)
+
+    attacklist = Attacklist.objects.get(user_id=request.user.pk)
     c1_info = calculate_card(attacklist.card1)
     c2_info = calculate_card(attacklist.card2)
     c3_info = calculate_card(attacklist.card3)

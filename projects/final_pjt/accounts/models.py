@@ -4,7 +4,7 @@ from django.conf import settings
 
 # Create your models here.
 class User(AbstractUser):
-    point = models.IntegerField(default=10000)
+    point = models.IntegerField(default=50000)
     tier = models.CharField(max_length=20, default='Bronze')
     win_point = models.IntegerField(default=0)
     nickname = models.CharField(max_length=8)

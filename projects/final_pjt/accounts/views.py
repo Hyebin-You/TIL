@@ -141,3 +141,15 @@ def change_usericon(request):
     user.user_icon = icon_url
     user.save()
     return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def change_point(request):
+    user = request.user
+    point = request.data['point']
+    if request.data['status'] == 'add':
+        user.point += int(point)
+    else:
+        user.point -= int(point)
+    user.save()
+    return Response(status=status.HTTP_200_OK)

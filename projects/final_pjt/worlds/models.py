@@ -11,8 +11,15 @@ class Profile_icon(models.Model):
 
 class Battlelog(models.Model):
     log = models.CharField(max_length=10)
-    enermy_nickname = models.CharField(max_length=10)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    my_card1_img = models.CharField(max_length=30)
+    my_card2_img = models.CharField(max_length=30)
+    my_card3_img = models.CharField(max_length=30)
+    enermy_nickname = models.CharField(max_length=10)
+    enermy_card1_img = models.CharField(max_length=30)
+    enermy_card2_img = models.CharField(max_length=30)
+    enermy_card3_img = models.CharField(max_length=30)
+
 
 
 class Card(models.Model):
