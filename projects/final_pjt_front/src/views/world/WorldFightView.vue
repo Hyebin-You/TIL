@@ -1,28 +1,75 @@
 <template>
-	<div>
-		<h1>WorldFight</h1>
-    <div id='game' style="border: solid black 1px">
-      <button id='randommatch' @click='getEnermy'>랜덤 매칭</button>
-      <button id='1round' style="display: none" @click='startFirstRound'>1라운드 시작</button>
-      <button id='2round' style="display: none" @click='startSecondRound'>2라운드 시작</button>
-      <button id='3round' style="display: none" @click='startThirdRound'>3라운드 시작</button>
-      <p>{{ round_num }}</p>
-      <p>게임 진행 상황</p>
-      <p>{{ my_win_point }} : {{ enermy_win_point }}</p>
-      <p v-for='(st, index) in gamestatus_content' :key='index'>{{ st }}</p>
-      <div id='ask' style="display:none">
-        <p>{{ ask }}</p>
-        <span style="margin-right: 3px" @click='openThirdButton'>예</span>
-        <span style="margin-left: 3px" @click='sendResult'>대전 종료</span>
+	<div class="background-fight">
+    <div class="fight-title">메이플 아레나</div>
+		<!-- <h1>WorldFight</h1> -->
+    <div id='game'>
+      <div class="myButton" id='randommatch' @click='getEnermy'>랜덤 매칭</div>
+      <div class="myButton" id='1round' style="display: none" @click='startFirstRound'>1라운드 시작</div>
+      <div class="myButton" id='2round' style="display: none" @click='startSecondRound'>2라운드 시작</div>
+      <div class="myButton" id='3round' style="display: none" @click='startThirdRound'>3라운드 시작</div>
+      <div id="round-info">
+        <p>{{ round_num }}</p>
+        <p>게임 진행 상황</p>
+        <p>{{ my_win_point }} : {{ enermy_win_point }}</p>
       </div>
-      <p>{{ battle_result }}</p>
-      <button id='endgame' style="display: none" @click='sendResult'>대전 종료</button>
+      <div class="game-content" v-for='(st, index) in gamestatus_content' :key='index'>{{ st }}</div>
+      <div id='ask' style="display:none">
+        <p style="font-size: 20px;">{{ ask }}</p>
+        <div class="myButton"  @click='openThirdButton'>예</div>
+        <div class="myButton"  @click='sendResult'>대전 종료</div>
+      </div>
+      <p style="font-size: 20px;">{{ battle_result }}</p>
+      <div class="myButton" id='endgame' style="display: none" @click='sendResult'>대전 종료</div>
+      <div class="myButton" id='renewpage' style="display: none;" @click='renewPage'>처음으로</div>
     </div>
-		<WorldDeckCard/>
+    <div style="display: flex; justify-content: space-evenly">
+      <div class="listbox">
+        <div class="item-size-box">
+          <WorldDeckCard
+            id="my3"
+            :card='my_card3'
+            class="eventhover"
+          />
+          <WorldDeckCard
+            id="my2"
+            :card='my_card2'
+            class="eventhover"
+          />
+          <WorldDeckCard
+            id="my1"
+            :card='my_card1'
+            class="eventhover"
+          />
+        </div>
+      </div>
+      <div class="listbox">
+        <div class="item-size-box">
+          <WorldDeckCard
+            id="enemy1"
+            :card='enermy_card1'
+            class="eventhover"
+          />
+          <WorldDeckCard
+            id="enemy2"
+            :card='enermy_card2'
+            class="eventhover"
+          />
+          <WorldDeckCard
+            id="enemy3"
+            :card='enermy_card3'
+            class="eventhover"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="bottom-image">
+
+    </div>
 	</div>
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import WorldDeckCard from '@/components/world/profile/WorldDeckCard'
 import _ from 'lodash'
 import axios from 'axios'
@@ -260,8 +307,12 @@ export default {
       if (this.endgame) {
         if (this.win_user === 'me') {
           this.my_win_num += 1
+          const enemy1 = document.querySelector('#enemy1')
+          enemy1.style.opacity = '0.6';
         } else {
           this.enermy_win_num += 1
+          const my1 = document.querySelector('#my1')
+          my1.style.opacity = '0.6';
         }
         this.win_user = null
         this.endgame = false
@@ -282,8 +333,12 @@ export default {
       if (this.endgame) {
         if (this.win_user === 'me') {
           this.my_win_num += 1
+          const enemy2 = document.querySelector('#enemy2')
+          enemy2.style.opacity = '0.6';          
         } else {
           this.enermy_win_num += 1
+          const my2 = document.querySelector('#my2')
+          my2.style.opacity = '0.6';          
         }
         this.win_user = null
         this.endgame = false
@@ -316,8 +371,12 @@ export default {
       if (this.endgame) {
         if (this.win_user === 'me') {
           this.my_win_num += 1
+          const enemy3 = document.querySelector('#enemy3')
+          enemy3.style.opacity = '0.6';            
         } else {
           this.enermy_win_num += 1
+          const my3 = document.querySelector('#my3')
+          my3.style.opacity = '0.6';            
         }
         this.win_user = null
         this.endgame = false
@@ -342,23 +401,64 @@ export default {
     sendResult() {
       axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/worlds/make_battlelog/',
+        url: `${API_URL}/worlds/make_battlelog/`,
         data: {
           'enermy_id': this.enermy_id,
-          'log': this.final_result
+          'log': this.final_result,
+          'my1img': this.my_card1.img_url,
+          'my2img': this.my_card2.img_url,
+          'my3img': this.my_card3.img_url,
+          'e1img': this.enermy_card1.img_url,
+          'e2img': this.enermy_card2.img_url,
+          'e3img': this.enermy_card3.img_url,
         },
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then(() => {
-        this.$router.go()
+      .then((res) => {
+        const winpoint = res.data.user_winpoint
+        let after_tier
+        if (winpoint < 500) {
+          after_tier = 'Bronze'
+        } else if (winpoint >= 500 && winpoint < 1000) {
+          after_tier = 'Silver'
+        } else if (winpoint >= 1000 && winpoint < 2000) {
+          after_tier = 'Gold'
+        } else {
+          after_tier = 'Platinum'
+        }
+
+        axios({
+          method: 'post',
+          url: `${API_URL}/worlds/change_tier/`,
+          data: {
+            'after': after_tier,
+          },
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          }
+        })
+        .then((res) => {
+          this.$store.dispatch('userData')
+          const butend = document.getElementById('endgame')
+          const divask = document.getElementById('ask')
+          divask.style.display = 'none'
+          butend.style.display = 'none'
+
+          const renewbut = document.getElementById('renewpage')
+          renewbut.style.display = 'inline'
+        })
       })
     },
     getEnermy() {
+      if (this.my_card1 === null) {
+        this.$swal('공격덱 구성이 되어있지 않아 게임을 진행할 수 없습니다.', '덱 구성을 하고 와주세요!', 'warning')
+        return
+      }
       axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/worlds/get_enermy_status/',
+        url: `${API_URL}/worlds/get_enermy_status/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }
@@ -376,12 +476,18 @@ export default {
         const but = document.getElementById('1round')
         but.style.display = 'inline'
       })
+    },
+    renewPage() {
+      this.$router.go()
     }
   },
   created() {
+    if (!this.isLogin) {
+      this.$router.push({ name: 'login'});
+    }    
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:8000/worlds/get_my_status/',
+      url: `${API_URL}/worlds/get_my_status/`,
       headers: {
         Authorization: `Token ${this.$store.state.token}`
       }
@@ -394,6 +500,9 @@ export default {
     })
   },
   computed: {
+		isLogin() {
+			return this.$store.getters.isLogin;
+		},    
     gamestatus_content() {
       return _.split(this.gamestatus, '.')
     },
@@ -406,16 +515,113 @@ export default {
     round_num () {
       return this.roundnum
     },
-    user_tier () {
+    user_tier() {
       return this.$store.state.userObject.tier
     }
   },
   watch: {
     user_tier: function(val, oldval) {
-      alert(`티어가 ${oldval}에서 ${val}로 바뀌었습니다!`)
+      this.$swal(`티어가 ${oldval}에서 ${val}로 변경되었습니다.`, '', 'info')
     }
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+#round-info {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#game {
+  width: 1200px;
+  height: 500px;
+  min-height: 500px;
+  max-height: 500px;
+  margin: auto;
+  background-color: rgba(12, 12, 12, 0.659);
+} 
+.game-content {
+  font-size: 30px;
+  text-align: start;
+  margin-left: 300px;
+}
+
+.fight-title {
+  font-size: 50px;
+  font-family: 'maplestory';
+  padding: 20px;
+}
+.background-fight {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('@/assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.listbox {
+  width: 530px;
+  height: 250px;
+  /* border: 1px solid whitesmoke; */
+  margin: 10px;
+}
+
+.item-size-box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+
+}
+.eventhover {
+	width: 200px;
+	transform: scale(0.9);
+}
+
+.eventhover:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+	transition: all 1s;
+  z-index: 100;
+}
+
+.text-hidden:hover {
+  display: none !important;
+
+}
+
+.myButton {
+  position: absolute;
+  top: 75%;
+  left: 47%;  
+	box-shadow:inset 0px 1px 0px 0px #f2d3e9;
+	background-color:#ebb7d3;
+	border-radius:6px;
+	border:1px solid #f073d1;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:18px;
+	font-weight: 800;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 0.7px 0px #fa62b3;
+} 
+.myButton:hover {
+	background-color:#fc81c0;
+}
+
+.myButton:active {
+	top:75.4%;
+}
+
+
+
+
+
+
+
+</style>

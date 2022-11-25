@@ -1,19 +1,21 @@
 <template>
-  <div style="display:flex;">
-    <p style="margin-right: 2px">{{ user.nickname }}</p>
-    <p style="margin-left:1px; margin-right:1px">{{ user.tier }}</p>
-    <p style="margin-left:1px; margin-right:1px">{{ user.win_point }}</p>
+  <div class="ranking-box" v-if='user'>
+    <div>{{ index + 1 }}위 </div>
+    <img :src="require(`@/assets/${user.user_icon}`)" alt="icon" />
+    <div class="ranking-private-box">{{ user?.nickname }}</div>
+    <div class="ranking-private-box">{{ user?.tier }}</div>
+    <div class="ranking-private-box">{{ user?.win_point }}</div>
     <WorldDeckCard
-      class='cardbox eventhover'
-      :card='user.attacklist_set[0].card1'
+      class='eventhover'
+      :card='user?.attacklist_set[0].card1'
     />
     <WorldDeckCard
-      class='cardbox eventhover'
-      :card='user.attacklist_set[0].card2'
+      class='eventhover'
+      :card='user?.attacklist_set[0].card2'
     />
     <WorldDeckCard
-      class='cardbox eventhover'
-      :card='user.attacklist_set[0].card3'
+      class='eventhover'
+      :card='user?.attacklist_set[0].card3'
     />
   </div>
 </template>
@@ -27,16 +29,37 @@ export default {
     WorldDeckCard
   },
   props: {
-    user: Object
+    user: Object,
+    index: Number,
   }
 }
 </script>
 
 <style scoped>
-.cardbox {
-  height: 100px;
-  width: 70px;
+.ranking-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
 }
+.ranking-box > div:nth-child(1) {
+  font-size: 50px;
+  width: 120px;
+}
+
+
+.ranking-box > img:nth-child(2) {
+  width: 80px;
+  height: 80px;
+}
+
+.ranking-private-box {
+  width: 150px;
+  text-align: center;
+  height: fit-content;
+}
+
 
 .eventhover {
   height: 100px;

@@ -47,6 +47,7 @@
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from "axios";
 import DetailSideReviewItem from "@/components/movie/detail/DetailSideReviewItem";
 
@@ -83,7 +84,7 @@ export default {
 			// console.log('$$$$$$$$$$$$$$', this.movie.review_set);
 			axios({
 				method: "post",
-				url: `http://127.0.0.1:8000/movies/create_review/${this.movie.id}/`,
+				url: `${API_URL}/movies/create_review/${this.movie.id}/`,
 				data: {
 					title: this.reviewTitle,
 					content: this.reviewContent,
@@ -94,8 +95,26 @@ export default {
 				},
 			})
 				.then(res => {
-					console.log("생성되었습니다", res);
+					axios({
+						method: "post",
+						url: `${API_URL}/accounts/change_point/`,
+						data: {
+							'status': 'add',
+							'point': 500,
+						},
+						headers: {
+							Authorization: `Token ${this.$store.state.token}`
+						}
+					})
+						.then(res => {
+							this.$store.dispatch("userData");
+						})
+						.catch(err => {
+							console.log("error", err);
+						});
+
 					this.reviewLength = this.movie.review_set.length;
+
 
 					const newData = {
 						title: this.reviewTitle,
@@ -116,7 +135,7 @@ export default {
 				})
 				.catch(err => {
 					console.log(err);
-          console.log(this.$store.state.token);
+					console.log(this.$store.state.token);
 				});
 		},
 	},

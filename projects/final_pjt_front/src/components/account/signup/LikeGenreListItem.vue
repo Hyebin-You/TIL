@@ -55,6 +55,7 @@ export default {
 
 .genre-box > p:hover {
   cursor: pointer;
+  color: #A63268;
 }
 .select-box {
   color: #A63268;

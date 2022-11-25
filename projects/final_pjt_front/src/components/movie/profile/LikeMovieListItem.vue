@@ -6,12 +6,12 @@
 		<!-- <img src="@/assets/movie.jpg" :alt="movie" /> -->
 		<div class="text-hidden">
 			<p>{{ movie.title }}</p>
-			<!-- <p>사일런트힐</p> -->
 		</div>
 	</div>
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from 'axios'
 
 export default {
@@ -32,7 +32,10 @@ export default {
 
 			axios({
 				methods: 'get',
-				url: `http://127.0.0.1:8000/movies/movie_detail/${this.movie.id}/`
+				url: `${API_URL}/movies/movie_detail/${this.movie.id}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }				
 			})
 				.then((res) => {
 					// console.log('!!!!!!!!!!!!!', res.data);
@@ -45,7 +48,7 @@ export default {
   },
 	computed: {
 		leftSize() {
-			console.log('!!!@@@!!', typeof(`${this.index * 10}px`));
+			// console.log('!!!@@@!!', typeof(`${this.index * 10}px`));
 			const value = this.index * 50
 			return `${value}px`
 		}

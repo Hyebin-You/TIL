@@ -23,6 +23,7 @@
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from "axios";
 import _ from 'lodash'
 import carousel from "vue-owl-carousel";
@@ -40,12 +41,15 @@ export default {
 		};
 	},
 	created() {
-		console.log('zz', this.$store.state.userObject);
+		// console.log('zz', this.$store.state.userObject);
 		const userGenre = _.sample(this.$store.state.userObject.like_genres);
-		console.log(' 장르@@##', userGenre);
+		// console.log(' 장르@@##', userGenre);
 		axios({
 			method: "get",
-			url: `http://127.0.0.1:8000/movies/search/genre?genre=${userGenre.name}`,
+			url: `${API_URL}/movies/search/genre?genre=${userGenre.name}`,
+			headers: {
+				Authorization: `Token ${this.$store.state.token}`
+			}			
 		})
 			.then(res => {
 				this.randomList = res.data;

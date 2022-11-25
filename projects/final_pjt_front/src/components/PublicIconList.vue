@@ -9,16 +9,17 @@
 			@enter="enter"
 			@after-enter="afterEnter">
 			<PublicIconListItem
-				v-for="(icon, index) in IconList"
-				:key="index"
+				v-for="icon in IconList"
+				:key="icon.id"
 				:icon="icon" />
 		</transition-group>
 	</div>
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import PublicIconListItem from "@/components/PublicIconListItem";
-
+import axios from 'axios'
 
 export default {
 	name: "PublicIconList",
@@ -27,7 +28,7 @@ export default {
 	},
 	data() {
 		return {
-			IconList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+			IconList: null,
 		};
 	},
 	methods: {
@@ -37,17 +38,36 @@ export default {
 		afterEnter(el) {
 			el.style.transitionDelay = "";
 		},
+		iconList() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/worlds/iconlists/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+        .then((res) => {
+          console.log(res.data);
+          this.IconList = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+		}
 	},
+	created() {
+		this.iconList();
+	}
 };
 </script>
 
-<style>
+<style scoped>
 .icons {
 	display: flex;
 	width: 900px;
 	flex-wrap: wrap;
 	align-items: center;
-
+	border-bottom: 3px white solid;
 }
 .iconlist-flex {
   display: flex;

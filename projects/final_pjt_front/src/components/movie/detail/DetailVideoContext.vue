@@ -30,6 +30,7 @@
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from 'axios'
 import _ from 'lodash'
 
@@ -42,7 +43,7 @@ export default {
 		likeMovie() {
 			axios({
 				method: 'post',
-				url: `http://127.0.0.1:8000/movies/likes/${this.movie.id}/`,
+				url: `${API_URL}/movies/likes/${this.movie.id}/`,
 				headers: {
 					Authorization: `Token ${this.$store.state.token}`
 				},
@@ -57,13 +58,12 @@ export default {
 		addPlayList(playlist_id) {
 			axios({
 				method: 'post',
-				url: `http://127.0.0.1:8000/movies/playlist_movie/${playlist_id}/${this.movie.id}/`,
+				url: `${API_URL}/movies/playlist_movie/${playlist_id}/${this.movie.id}/`,
 				headers: {
 					Authorization: `Token ${this.$store.state.token}`
 				}
 			})
 				.then((res) => {
-					console.log('플레이리스트 담겼냐', res);
 					this.$store.dispatch('userData');
 				})
 				.catch((err) => {
@@ -104,7 +104,7 @@ export default {
 }
 
 .detail-context {
-	margin: 30px 0;
+	margin: 25px 0;
 	width: 700px;
 	height: 250px;
 	text-align: left;
@@ -132,7 +132,6 @@ export default {
 	margin-left: 5px;
 	width: 27px;
 	height: 27px;
-	background-color: aliceblue;
 }
 .detail-context img:hover {
 	cursor: pointer;
@@ -150,8 +149,9 @@ export default {
 .dropdown {
   position: relative;
   display: inline-block;
-	width: 25px;
-  height: 25px;
+	margin-top: 5px;
+	width: 30px;
+	height: 32px;
 }
 
 /* Dropdown Content (Hidden by Default) */

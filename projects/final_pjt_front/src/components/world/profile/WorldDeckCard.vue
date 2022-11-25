@@ -1,13 +1,15 @@
 <template>
   <!-- 아래의 div 태그에 @click="showUsercardDetail(card)" -->
-  <div class="test" @click="showUsercardDetail" :class="{'isGold' : !card.isnormal}">
-    <img :src="require(`@/assets/${card.img_url}`)" alt="card img">
-    <div class="text-hidden">
-      <p style="font-size: 13px">{{ card.cardname }}</p>
+  <div v-if="card" class="test" @click='showUsercardDetail'>
+    <img :src="require(`@/assets/${card.img_url}`)" :class=" card.isnormal? 'isSilver': 'isGold' " alt="card img">
+    <div v-if="card.ability1" class="text-hidden">
+      <p style="font-size: 17px">{{ card?.cardname }}</p>
       <br>
-      <p>{{ card.ability1 }}</p>
-      <p>{{ card.ability2 }}</p>
-      <p>{{ card.ability3 }}</p>
+			<div :style="{ border : cardGrade }">
+				<span>{{ card?.ability1 }}</span>
+				<span>{{ card?.ability2 }}</span>
+				<span>{{ card?.ability3 }}</span>
+			</div>
     </div>
   </div>
 </template>
@@ -15,16 +17,35 @@
 <script>
 export default {
   name: 'WorldCard',
+	data() {
+		return {
+			// cardGrade: `4px solid purple`
+		}
+	},
   props: {
     card: Object,
   },
-  methods: {
-    showUsercardDetail() {
-      const bodyScroll = document.querySelector('body');
-			bodyScroll.style.overflow = 'hidden';
-      this.$store.commit('SHOW_USERCARD_DETAIL', this.card)
-    }
-  }
+	computed: {
+		cardGrade() {
+			if(this.card.ability_grade === '에픽') {
+				return `4px solid purple`;
+			} else if (this.card.ability_grade === '유니크') {
+				return `4px solid yellow`;
+			} else {
+				return `4px solid green`;
+			}
+		}
+	},
+	methods: {
+		showUsercardDetail() {
+			if (this.card.ability1) {
+				const bodyScroll = document.querySelector('body')
+				bodyScroll.style.overflow = 'hidden';
+				this.$store.commit('SHOW_USERCARD_DETAIL', this.card)
+
+			}
+		}
+	}
 }
 </script>
 
@@ -38,11 +59,12 @@ export default {
 }
 
 .text-hidden {
-	/* display: flex; */
+	display: flex;
+  flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 100%;
+	height: 90%;
 	opacity: 0;
 	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
 	/* background-color: rgba(0, 0, 0, 0.7); */
@@ -61,19 +83,38 @@ export default {
 
 .text-hidden > p {
 	max-width: 150px;
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: 500;
+	margin: 0;
 	/* padding-top: 150px; */
 	/* padding-top: 200px; */
 	/* text-align: left; */
 	word-break: break-all;
 }
+
+.text-hidden > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	/* border: 4px solid purple; */
+	padding: 3px 15px;
+	border-radius: 5px;
+}
+
 img {
 	width: 100%;
+	height: 90%;
 	border-radius: 5px;
 }
 
 .isGold {
-  border: solid gold 2px;
+  border: solid gold 3px;
 }
+
+.isSilver {
+	border: solid rgb(130, 130, 130) 3px;
+}
+
+
 </style>

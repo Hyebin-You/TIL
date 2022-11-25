@@ -6,12 +6,15 @@
 		<!-- <img src="@/assets/movie.jpg" :alt="movie" /> -->
 		<div class="text-hidden">
 			<p>{{ movie.title }}</p>
-			<!-- <p>사일런트힐</p> -->
+			<div>
+				<span v-for="genre in movie.genres" :key="genre.name">{{ genre.name }}</span>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from 'axios'
 
 export default {
@@ -26,7 +29,10 @@ export default {
 			// TODO: Vuestyle로 수정
 			axios({
 				methods: 'get',
-				url: `http://127.0.0.1:8000/movies/movie_detail/${this.movie.id}/`
+				url: `${API_URL}/movies/movie_detail/${this.movie.id}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }				
 			})
 				.then((res) => {
 					// console.log('!!!!!!!!!!!!!', res.data);
@@ -35,9 +41,6 @@ export default {
 				.catch((err) => {
 					console.log(err);
 				})
-			// this.$router.push({ name: 'detail' });
-			// 나중에 여기 axios요청으로 pk값 담아서 detail페이지 요청하면됨
-			// 지금 캐러셀 디테일페이지 2마리씩 오류
     }
   },
 	// created() {
@@ -59,6 +62,7 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
 	opacity: 0;
@@ -79,8 +83,8 @@ export default {
 
 .text-hidden > p {
 	max-width: 150px;
-	font-size: 20px;
-	font-weight: 500;
+	font-size: 18px;
+	font-weight: 800;
 	padding-top: 150px;
 	/* padding-top: 200px; */
 	/* text-align: left; */
@@ -90,5 +94,22 @@ img {
 	width: 100%;
 	border-radius: 5px;
 }
+.text-hidden > div > span{
+	/* margin-top: 30px;  */
+	font-size: 12px;
+	/* font-weight: 300; */
+	border: solid 1px;
+	border-radius: 3px;
+	margin-right: 5px;
+	min-width: 30px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: #ffffff;
+	color: #4e4e4e;
+	font-weight: bold;
+	padding: 0 5px;
+}
+
 
 </style>

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from "axios";
 import _ from "lodash";
 // import carousel from "vue-owl-carousel";
@@ -38,7 +39,10 @@ export default {
 
 			axios({
 				method: "get",
-				url: `http://127.0.0.1:8000/movies/search/genre?genre=${selectedGenre}`,
+				url: `${API_URL}/movies/search/genre?genre=${selectedGenre}`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }				
 			})
 				.then(res => {
 					// console.log("!@#!@#!@#!", res.data);
@@ -57,7 +61,10 @@ export default {
 
 		axios({
 			method: "get",
-			url: `http://127.0.0.1:8000/movies/search/genre?genre=${selectedGenre}`,
+			url: `${API_URL}/movies/search/genre?genre=${selectedGenre}`,
+			headers: {
+				Authorization: `Token ${this.$store.state.token}`
+			}			
 		})
 			.then(res => {
 				// console.log("!@#!@#!@#!", res.data);
@@ -96,7 +103,7 @@ export default {
 	z-index: 20;
 	font-size: 20px;
 	left: 150px;
-	bottom: 200px;
+	bottom: 210px;
 }
 
 .owl-next {

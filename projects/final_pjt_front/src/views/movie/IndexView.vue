@@ -27,13 +27,15 @@
 			</transition>
 		</div>
 		<PeoPleMovieList />
+		<img @click="goWorld" class="jump_pink" src="@/assets/pinkbean_jump.gif" alt="pink">
+		<!-- <img @click="goWorld" class="sticky-door" src="@/assets/door.png" alt="door"> -->
 	</div>
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from "axios";
 import _ from "lodash";
-// import IndexLatestList from "@/components/movie/index/IndexLatestList";
 import IndexLikeList from "@/components/movie/index/IndexLikeList";
 import IndexRandomList from "@/components/movie/index/IndexRandomList";
 import PeoPleMovieList from "@/components/movie/PeoPleMovieList";
@@ -42,7 +44,6 @@ import DetailView from "@/views/movie/DetailView";
 export default {
 	name: "IndexView",
 	components: {
-		// IndexLatestList,
 		IndexLikeList,
 		IndexRandomList,
 		PeoPleMovieList,
@@ -54,10 +55,27 @@ export default {
 			videoGenre: [],
 		};
 	},
+	methods: {
+		goWorld() {
+			this.$store.commit('CHANGE_WORLD');
+			this.$router.push({ name: 'worldindex' });
+		}
+	},
+	computed: {
+		isLogin() {
+			return this.$store.getters.isLogin;
+		},
+	},	
 	created() {
+		if (!this.isLogin) {
+			this.$router.push({ name: 'login'});
+		}	
 		axios({
 			method: "get",
-			url: `http://127.0.0.1:8000/movies/search/latest/`,
+			url: `${API_URL}/movies/search/latest/`,
+			headers: {
+				Authorization: `Token ${this.$store.state.token}`
+			}			
 		})
 			.then(res => {
 				this.video = _.sample(res.data);
@@ -86,6 +104,56 @@ export default {
 		format("woff");
 	font-weight: lighter;
 }
+/* .sticky-door {
+	position: sticky;
+	bottom: 10px;
+	left: 95%;
+	z-index: 60;
+	width: 60px;
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+}
+
+.sticky-door:hover {
+	cursor: pointer;
+	transform-origin: left;
+	transform: rotateY(60deg);
+	transition: all 1s;
+} */
+.jump_pink {
+	position: sticky;
+	bottom: 10px;
+	left: 90%;
+	z-index: 61;
+	width: 40px;
+	transition: all 1s;
+	animation-duration: 12s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+}
+.jump_pink:hover {
+	cursor: pointer;
+	transform: scale(1.4);
+}
+
+
+@keyframes slidein {
+  0% {
+    left: 80%;
+  }
+
+  70% {
+    left: 99%;
+  }
+	
+	100% {
+    left: 89%;
+  }
+}
+
+
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
@@ -184,7 +252,7 @@ export default {
 }
 .iframe-box {
 	position: absolute;
-	z-index: -99;
+	z-index: -50;
 	width: 100%;
 	height: 70%;
 	transform: scaleX(1.6) scaleY(1.15);

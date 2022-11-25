@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<div>{{ userObject.nickname }}님이 좋아요 하신 영화목록</div>
-		<div class="container" v-if="userObject.like_movies">
+		<div class="likelist-title">{{ userObject.nickname }}님이 좋아요 하신 영화목록</div>
+		<div class="container">
 			<carousel
 				:items="7"
 				:autoplay="false"
 				:nav="true"
 				:dots="false"
-				class="marginTop50">
+				>
 				<MovieItem
 					v-for="movie in userObject.like_movies"
 					:key="movie.id"
@@ -70,12 +70,14 @@ export default {
 .container {
 	width: 1350px;
 	max-height: 350px;
+
 }
-.wholebox {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-}
+.likelist-title {
+  font-size: 25px;
+	text-align: start;
+} 
+
+
 
 .owl-next {
 	font-size: 60px !important;

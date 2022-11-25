@@ -23,6 +23,7 @@
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import axios from "axios";
 import carousel from "vue-owl-carousel";
 import MovieItem from "@/components/movie/MovieItem";
@@ -42,7 +43,10 @@ export default {
 	created() {
     axios({
       method: "get",
-			url: "http://127.0.0.1:8000/movies/search/random",
+			url: `${API_URL}/movies/search/random/`,
+			headers: {
+				Authorization: `Token ${this.$store.state.token}`
+			}			
 		})
 			.then(res => {
         this.randomList = res.data;

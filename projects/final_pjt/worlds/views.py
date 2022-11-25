@@ -31,13 +31,13 @@ def make_battlelog(request):
     user = request.user
     
     if request.data['log'] == '승':
-        user.win_point += 500
+        user.win_point += 100
         user.save()
         log = Battlelog()
         log.log = '승리'
     else:
-        if user.win_point >= 500:
-            user.win_point -= 500
+        if user.win_point >= 50:
+            user.win_point -= 50
         user.save()
         log = Battlelog()
         log.log = '패배'

@@ -1,33 +1,40 @@
 <template>
 	<div>
-		WorldShopView
-		<PublicIconList />
-		<WorldShopCube />
-    <button @click="getCards">카드 뽑기</button>
-    <div style="display: flex" class='item-size-box'>
-      <WorldDeckCard
-        v-for="card in cardList"
-        :key='card.id'
-        :card='card'
-        class='eventhover'
-      />
-    </div>
+    <WorldCardDetail />
+		<div class="icon-shop">
+			<div>IconShop</div>
+			<PublicIconList />
+		</div>
+    <div class="myButton" @click="getCards">카드 뽑기</div>
+      <div class="item-size-box">
+        <WorldDeckCard
+          v-for="card in cardList"
+          :key='card.id'
+          :card='card'
+          class='eventhover'
+        />
+      </div>
     <br>
     <!-- <img v-for="(card, index) in cardList" :key='index' :src="require(`@/assets/actors/${card.img_url}`)"> -->
     <br>
-    <p>블랙 큐브를 몇 개 구매하시겠습니까</p>
-    <input type="number" @keyup.enter="buyBlackCube" v-model='buy_black' placeholder="개수를 입력 후 엔터치기">
-    <br>
-    <br>
-    <p>레드 큐브를 몇 개 구매하시겠습니까</p>
-    <input type="number" @keyup.enter="buyRedCube" v-model='buy_red' placeholder="개수를 입력 후 엔터치기">
+    <div style="display: flex; justify-content: center;">
+      <div>
+        <div @click="buyBlackCube" class="black-cube">블랙 큐브 구매</div>
+        <input type="number" @keyup.enter="buyBlackCube" v-model='buy_black' placeholder="개수 입력">
+      </div>
+      <div>
+        <div @click="buyRedCube" class="red-cube">레드 큐브 구매</div>
+        <input type="number" @keyup.enter="buyRedCube" v-model='buy_red' placeholder="개수 입력">
+      </div>
+    </div>
 	</div>
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import PublicIconList from "@/components/PublicIconList";
-import WorldShopCube from "@/components/world/shop/WorldShopCube";
 import WorldDeckCard from "@/components/world/profile/WorldDeckCard"
+import WorldCardDetail from "@/components/world/profile/WorldCardDetail"
 import _ from 'lodash'
 import axios from 'axios'
 
@@ -35,20 +42,32 @@ export default {
 	name: "WorldShopView",
 	components: {
 		PublicIconList,
-		WorldShopCube,
-    WorldDeckCard
+    WorldDeckCard,
+    WorldCardDetail
 	},
   data() {
     return {
       // 30%(20% 10%)  35%(20% 15%)  35%(20% 15%)
       abilitylist: ['공격력+03%', '공격력+06%', '방어력+03%', '방어력+06%', '체력+03%', '체력+06%'],
-      buy_black: null,
-      buy_red: null,
+      buy_black: 0,
+      buy_red: 0,
       cardList: [],
       goldList: [1, 2, 3, 4, 5, 6, 7, 8]
     }
   },
+	created() { {
+			if (!this.isLogin) {
+				this.$router.push({ name: 'login'});
+			}
+		}
+	},
   methods: {
+		enter(el) {
+			el.style.transitionDelay = 200 + "ms";
+		},
+		afterEnter(el) {
+			el.style.transitionDelay = "";
+		},
     sleep(ms) {
       const wakeUpTime = Date.now() + ms;
       while (Date.now() < wakeUpTime) {
@@ -89,7 +108,7 @@ export default {
 
       axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/accounts/make_usercards/',
+        url: `${API_URL}/accounts/make_usercards/`,
         data: {'card_pk': card_pk, 'ability1': ability1, 'ability2': ability2, 'ability3': ability3},
         headers: {
           Authorization: `Token ${this.$store.state.token}`
@@ -105,7 +124,7 @@ export default {
       보유 포인트 : ${this.user.point}`)
       if (result) {
         if (this.user.point < 2000) {
-          alert('포인트가 모자랍니다!!!')
+          this.$swal('포인트가 모자랍니다!!','','warning');
           return
         }
       } else {
@@ -125,11 +144,13 @@ export default {
       this.$store.dispatch('userData')
     },
     buyBlackCube() {
-      const result = confirm(`블랙큐브를 ${this.buy_black}개 구매하시겠습니까?`)
+      const result = confirm(`블랙큐브를 ${this.buy_black}개 구매하시겠습니까?
+      총 가격 : ${this.buy_black * 100}
+      보유 포인트 : ${this.user.point}`)
       if (result) {
         axios({
           method: 'post',
-          url: 'http://127.0.0.1:8000/worlds/buy_cube/',
+          url: `${API_URL}/worlds/buy_cube/`,
           data: {
             'num': this.buy_black,
             'cubename': 'black'
@@ -139,12 +160,12 @@ export default {
           }
         })
         .then(() => {
-          alert(`블랙큐브 ${this.buy_black}개 구매에 성공했습니다!`);
+          this.$swal(`블랙큐브 ${this.buy_black}개`,'구매에 성공했습니다!', 'success');
           this.buy_black = null
           this.$store.dispatch('userData')
           })
         .catch(() => {
-          alert('가지고 있는 포인트가 부족하여 구매에 실패했습니다. 보유 포인트를 확인하고 구매해주세요!')
+          this.$swal('구매 실패!!', '보유 포인트를 확인하고 구매해주세요', 'warning');
           this.buy_black = null
         })
       } else {
@@ -152,11 +173,13 @@ export default {
       }
     },
     buyRedCube() {
-      const result = confirm(`레드큐브를 ${this.buy_red}개 구매하시겠습니까?`)
+      const result = confirm(`레드큐브를 ${this.buy_red}개 구매하시겠습니까?
+      총 가격 : ${this.buy_red * 50}
+      보유 포인트 : ${this.user.point}`)
       if (result) {
         axios({
           method: 'post',
-          url: 'http://127.0.0.1:8000/worlds/buy_cube/',
+          url: `${API_URL}/worlds/buy_cube/`,
           data: {
             'num': this.buy_red,
             'cubename': 'red'
@@ -166,12 +189,12 @@ export default {
           }
         })
         .then(() => {
-          alert(`레드큐브 ${this.buy_red}개 구매에 성공했습니다!`);
+          this.$swal(`레드큐브 ${this.buy_red}개 구매에 성공했습니다!`, '', 'success');
           this.buy_red = null
           this.$store.dispatch('userData')
           })
         .catch(() => {
-          alert('가지고 있는 포인트가 부족하여 구매에 실패했습니다. 보유 포인트를 확인하고 구매해주세요!')
+          this.$swal('가지고 있는 포인트가 부족하여 구매에 실패했습니다.', '보유 포인트를 확인하고 구매해주세요!', 'success')
           this.buy_red = null
           
         })
@@ -181,6 +204,9 @@ export default {
     }
   },
   computed: {
+		isLogin() {
+			return this.$store.getters.isLogin;
+		},    
     user() {
       return this.$store.state.userObject
     }
@@ -189,13 +215,65 @@ export default {
 </script>
 
 <style scoped>
+input {
+  width: 100px;
+  border-radius: 5px;
+}
+
+.black-cube {
+  background-image: url('@/assets/blackcube.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 170px;
+
+
+}
+.black-cube:hover {
+  cursor: pointer;
+  font-size: 17px;
+  transition: all 0.3s;
+  color:#000000;
+  font-weight: bold;
+}
+
+
+.red-cube {
+  background-image: url('@/assets/redcube.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 170px;
+}
+.red-cube:hover {
+  cursor: pointer;
+  font-size: 17px;
+  transition: all 0.3s;
+  color:#ff0189;
+  font-weight: bold;
+}
+
+
+.icon-shop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.icon-shop > div {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+
 .img-sizing {
   height: 300px;
 }
 .item-size-box {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   position: relative;
 
 }
@@ -209,5 +287,49 @@ export default {
 	transform: scale(1.05);
 	transition: all 1s;
   z-index: 100;
+}
+.icons {
+	display: flex;
+	width: 900px;
+	flex-wrap: wrap;
+	align-items: center;
+  border-bottom: 3px white solid;
+}
+.iconlist-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.fade-move-enter-active {
+	transition: all 0.5s ease-out;
+}
+.fade-move-enter {
+	transform: translateX(50px);
+	opacity: 0;
+}
+.fade-move-leave {
+	opacity: 0;
+}
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #f2d3e9;
+	background-color:#ebb7d3;
+	border-radius:6px;
+	border: 3px solid #f073d1;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:19px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 0.5px 0px #ff5ab2;
+}
+.myButton:hover {
+	background-color:#fc88c8;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
 }
 </style>

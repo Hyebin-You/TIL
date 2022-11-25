@@ -2,7 +2,7 @@
 	<div class="search-listbox">
 		<DetailView />
 		<div>
-			<h1>Movies</h1>
+			<h1>Search Result</h1>
 			<transition-group
 				class="search-items"
 				v-if="searchMovies"
@@ -39,10 +39,19 @@ export default {
 		};
 	},
 	computed: {
+		isLogin() {
+			return this.$store.getters.isLogin;
+		},		
 		searchMovies() {
 			return this.$store.state.searchList;
 		},
 	},
+	created() { {
+			if (!this.isLogin) {
+				this.$router.push({ name: 'login'});
+			}
+		}
+	},	
 	methods: {
 		enter(el) {
 			el.style.transitionDelay = 200 + "ms";

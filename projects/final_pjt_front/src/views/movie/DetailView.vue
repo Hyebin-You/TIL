@@ -34,6 +34,9 @@ export default {
 		return {};
 	},
 	computed: {
+		isLogin() {
+			return this.$store.getters.isLogin;
+		},		
 		detailBoxShadowStyle() {
 			return this.$store.state.detailBoxShadowStyle;
 		},
@@ -41,6 +44,12 @@ export default {
 			return this.$store.state.detailMovie;
 		},
 	},
+	created() { {
+			if (!this.isLogin) {
+				this.$router.push({ name: 'login'});
+			}
+		}
+	},	
 	methods: {
 		detailOff(event) {
 			if (event.target.id === "dropshadow") {

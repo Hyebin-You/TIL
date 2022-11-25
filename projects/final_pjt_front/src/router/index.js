@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SignUpView from '@/views/account/SignUpView'
-import UpdateView from '@/views/account/UpdateView'
 import LoginView from '@/views/account/LoginView'
 import IndexView from '@/views/movie/IndexView'
 import SearchView from '@/views/movie/SearchView'
@@ -14,11 +13,15 @@ import WorldShopView from '@/views/world/WorldShopView'
 import SignUpNickNameView from '@/views/account/SignUpNickNameView'
 import SignUpLikeGenreListView from '@/views/account/SignUpLikeGenreListView'
 import MoviePlayListDetailView from '@/views/movie/MoviePlayListDetailView'
-import DummyView from '@/views/account/DummyView'
+import PinkBeanView from '@/views/world/PinkBeanView'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '',
+    redirect: { name: 'login' }
+  },
   {
     path: '/signup',
     name: 'signup',
@@ -33,11 +36,6 @@ const routes = [
     path: '/likegenre',
     name: 'likegenre',
     component: SignUpLikeGenreListView
-  },
-  {
-    path: '/update',
-    name: 'update',
-    component: UpdateView
   },
   {
     path: '/login',
@@ -85,17 +83,16 @@ const routes = [
     component: WorldShopView
   },
   {
-    path: '/dummy',
-    name: 'dummy',
-    component: DummyView
-  },
-  {
     path: '/playlist',
     name: 'playlist',
     component: MoviePlayListDetailView
   },
+  {
+    path: '/pinkbean',
+    name: 'pinkbean',
+    component: PinkBeanView
+  },
 
-  
 ]
 
 const router = new VueRouter({

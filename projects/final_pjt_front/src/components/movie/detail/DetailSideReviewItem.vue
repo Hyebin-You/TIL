@@ -3,7 +3,7 @@
     <div :style="{ display : visibleContent }" class="review-content">{{ review.content }}</div>
 		<div class="review-nick-box">
 			<div>
-				<img src="@/assets/icons/moo.gif" alt="">
+				<img :src="require(`@/assets/${userObject.user_icon}`)" alt="icon">
 			</div>
 			<div>
 				{{ review.user.nickname }}
@@ -40,11 +40,11 @@ export default {
     closeContent() {
       this.visibleContent = 'none';
     },
-  // computed: {
-  //   starWidth() {
-  //     return `${this.review.score * 10}%`;
-  //   }
-  // }
+  },
+  computed: {
+    userObject() {
+      return this.$store.state.userObject;
+    }
   }
 };
 </script>

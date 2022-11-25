@@ -1,6 +1,6 @@
 <template>
   <div class="listbox">
-    <h3>{{ deckName }}</h3>
+    <div>{{ deckName }}</div>
     <div class="item-size-box">
       <WorldDeckCard
         :card="deckList.card1"
@@ -38,13 +38,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .listbox {
   width: 400px;
   height: 250px;
-  border: 1px solid whitesmoke;
+  /* border: 1px solid whitesmoke; */
   margin: 10px;
 }
+.listbox > div:nth-child(1) {
+  font-size: 20px;
+}
+
+
 .item-size-box {
   width: 100%;
   display: flex;
@@ -54,6 +59,7 @@ export default {
 }
 .eventhover {
 	width: 140px;
+  height: 210px;
 	transform: scale(0.9);
 }
 

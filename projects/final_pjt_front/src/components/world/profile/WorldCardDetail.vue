@@ -10,29 +10,40 @@
         <h1>CardDetail</h1>
         <div class="detail-flex">
           <div>
-            <img :src="require(`@/assets/${Card?.img_url}`)" alt="없넹..."
-              :class="{'isGold': Card.isnormal}"
+            <img class="actor-img" :src="require(`@/assets/${Card?.img_url}`)" alt="없넹..."
+              :class=" Card.isnormal? 'isSilver': 'isGold' "
               >
-            <p>{{ Card?.cardname }}</p>
-            <p>기본 공격력 : {{ Card?.attack }}</p>
-            <p>기본 방어력 : {{ Card?.defense }}</p>
-            <p>기본 체력 : {{ Card?.life }}</p>
+            <div class="actor-bottom-profile">
+              <div>
+                <p style="font-size: 40px; font-weight: bold;">{{ Card?.cardname }}</p>
+              </div>
+              <div style="font-size: 20px; text-align: start;">
+                <p>공격력 : {{ Card?.attack }}</p>
+                <p>방어율 : {{ Card?.defense }}%</p>
+                <p>체력 : {{ Card?.life }}</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <p>보유 블랙 큐브 : {{ User.blackcube }}개</p>
-            <p>보유 레드 큐브 : {{ User.redcube }}개</p>
-            <button @click='useBlack'>블랙 큐브 사용하기</button>
-            <button @click='useRed'>레드 큐브 사용하기</button>
+          <div class="right-side">
+            <div class="cube-box">
+              <div @click='useBlack' class="cube" >
+                <img :src="require(`@/assets/blackcube.png`)" alt="blackcube">
+                <div>{{ User.blackcube }}</div>
+              </div>
+              <div @click='useRed' class="cube" >
+                <img :src="require(`@/assets/redcube.png`)" alt="blackcube">
+                <div>{{ User.redcube }}</div>
+              </div>
+            </div>
             <p>잠재능력 등급 : {{ ability_grade }}</p>
-            <p>ability1 : {{ ability1 }}</p>
-            <p>ability2 : {{ ability2 }}</p>
-            <p>ability3 : {{ ability3 }}</p>
+            <p>{{ ability1 }}</p>
+            <p>{{ ability2 }}</p>
+            <p>{{ ability3 }}</p>
             <hr>
-            <p>큐브를 돌린 결과</p>
             <p>잠재능력 등급 : {{ changedAbilityGrade }}</p>
-            <p>ability1 : {{ changedAbility1 }}</p>
-            <p>ability2 : {{ changedAbility2 }}</p>
-            <p>ability3 : {{ changedAbility3 }}</p>
+            <p>{{ changedAbility1 }}</p>
+            <p>{{ changedAbility2 }}</p>
+            <p>{{ changedAbility3 }}</p>
             <button @click='sendResult'>해당 결과를 적용하시겠습니까?</button>
           </div>
         </div>
@@ -43,6 +54,7 @@
 </template>
 
 <script>
+const API_URL = 'http://3.112.52.213'
 import _ from 'lodash'
 import axios from 'axios'
 
@@ -92,11 +104,11 @@ export default {
     },
     useBlack() {
       if (this.User.blackcube === 0) {
-        alert('큐브가 없습니다!!')
+        this.$swal('큐브가 없습니다!!','큐브 구매해주세요!','warning');
         return
       }
 
-      if (this.ability_grade === 'epic') {
+      if (this.ability_grade === '에픽') {
         if (_.random(1, 100) <= 8) {
           this.changedAbilityGrade = '유니크'
         } else {
@@ -119,7 +131,7 @@ export default {
       
       axios({
         method: 'POST',
-        url: 'http://127.0.0.1:8000/accounts/use_cube/',
+        url: `${API_URL}/accounts/use_cube/`,
         data: {
           'cubename': 'black'
         },
@@ -136,11 +148,11 @@ export default {
     },
     useRed() {
       if (this.User.redcube === 0) {
-        alert('큐브가 없습니다!!')
+        this.$swal('큐브가 없습니다!!','큐브 구매해주세요!','warning');
         return
       }
 
-      if (this.ability_grade === 'epic') {
+      if (this.ability_grade === '에픽') {
         if (_.random(1, 100) <= 6) {
           this.changedAbilityGrade = '유니크'
         } else {
@@ -163,7 +175,7 @@ export default {
 
       axios({
         method: 'POST',
-        url: 'http://127.0.0.1:8000/accounts/use_cube/',
+        url: `${API_URL}/accounts/use_cube/`,
         data: {
           'cubename': 'red'
         },
@@ -181,7 +193,7 @@ export default {
     sendResult() {
       axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/accounts/modify_card/',
+        url: `${API_URL}/accounts/modify_card/`,
         data: {
           'card_pk': this.Card.id,
           'ability_grade': this.changedAbilityGrade,
@@ -194,8 +206,12 @@ export default {
         }
       })
       .then((res) => {
-        console.log(res)
+        this.changedAbilityGrade = null
+        this.changedAbility1 = null
+        this.changedAbility2 = null
+        this.changedAbility3 = null
         this.$store.dispatch('userData')
+        this.$store.commit('Change_USERCARD', res.data)
       })
       .catch((err) =>{
         console.log('결과반영 사용함수 에러', err)
@@ -236,6 +252,44 @@ export default {
 </script>
 
 <style scoped>
+.right-side {
+  margin: 120px 0 auto;
+}
+.actor-bottom-profile {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+
+.cube {
+  width: 30px; 
+  height: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.cube > div {
+  margin-left: 5pxc;
+}
+
+.cube:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: all 0.5s;
+}
+.cube:active > img {
+  transform: rotate(360deg);
+  transition: all 0.5s;
+}
+
+.cube-box {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
 .hide {
 	display: none;
 }
@@ -279,11 +333,15 @@ export default {
 	opacity: 0;
 }
 
-img {
+.actor-img {
   height: 500px;
 }
 
 .isGold {
-  border: solid 4px gold;
+  border: solid gold 3px;
+}
+
+.isSilver {
+	border: solid rgb(130, 130, 130) 3px;
 }
 </style>
