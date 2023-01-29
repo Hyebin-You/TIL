@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 const UnityGame = forwardRef((props, ref) => {
-  const attack = props.attack;
   const { unityProvider, sendMessage } = useUnityContext({
     loaderUrl: "unitybuild/build.loader.js",
     dataUrl: "unitybuild/build.data",
@@ -25,11 +24,19 @@ const UnityGame = forwardRef((props, ref) => {
     sendAttack,
   }));
 
+  // useEffect(() => {
+  //   unityProvider.on("canvas", (canvas) => {
+  //     canvas.width = 1000;
+  //     canvas.height = 700;
+  //   });
+  // }, []);
+
   return (
     <div>
       <Unity
         unityProvider={unityProvider}
-        style={{ width: 900, height: 600 }}
+        matchWebGLToCanvasSize={false}
+        className="unityGame"
       />
     </div>
   );

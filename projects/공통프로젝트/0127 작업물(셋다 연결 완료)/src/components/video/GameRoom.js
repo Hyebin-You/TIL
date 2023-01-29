@@ -387,11 +387,11 @@ class GameRoom extends Component {
     // const myRef = useRef({})
 
     return (
-      <div className="roomlayout">
+      <div>
         <button onClick={this.start}>start</button>
         {this.state.session !== undefined ? (
           <div id="session">
-            <div id="video-container" className="video-container">
+            <div id="video-container1" className="video-container">
               {this.state.publisher !== undefined ? (
                 <div
                   className="stream-container"
@@ -416,6 +416,32 @@ class GameRoom extends Component {
               ) : null}
             </div>
             <UnityGame data={this.predict} ref={this.state.myRef} />
+            <div id="video-container2" className="video-container">
+              {this.state.subscribers[1] !== undefined ? (
+                <div
+                  className="stream-container"
+                  onClick={() =>
+                    this.handleMainVideoStream(this.state.subscribers[1])
+                  }
+                >
+                  <UserVideoComponent
+                    streamManager={this.state.subscribers[1]}
+                  />
+                </div>
+              ) : null}
+              {this.state.subscribers[2] !== undefined ? (
+                <div
+                  className="stream-container"
+                  onClick={() =>
+                    this.handleMainVideoStream(this.state.subscribers[2])
+                  }
+                >
+                  <UserVideoComponent
+                    streamManager={this.state.subscribers[2]}
+                  />
+                </div>
+              ) : null}
+            </div>
           </div>
         ) : null}
       </div>
