@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import { useLocation } from "react-router-dom";
 import { OpenVidu } from "openvidu-browser";
 import axios from "axios";
 import UserVideoComponent from "./UserVideoComponent";
@@ -24,7 +25,6 @@ const OPENVIDU_SERVER_URL = "http://localhost:4443/";
 const APPLICATION_SERVER_URL = "http://localhost:5000/";
 const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 
-// Wrapper 에게 display:flex를 줄지 말지 고민중
 const Wrapper = styled.div`
   padding: 0px 0px 0px 0px;
   min-height: 100vh;
@@ -293,13 +293,15 @@ class GameRoom extends Component {
     return new Promise((resolve, reject) => {
       window.$.ajax({
         type: "GET",
-        url: `${"http://localhost:4443/api/sessions/"}${
+        url: `${"https://i8e107.p.ssafy.io/api/sessions/"}${
           this.state.mySessionId
         }/connection`,
         headers: {
           Authorization: `Basic ${btoa(
             `OPENVIDUAPP:${OPENVIDU_SERVER_SECRET}`
           )}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,POST",
         },
         success: (response) => {
           let content = response.content;
@@ -429,9 +431,12 @@ class GameRoom extends Component {
       {
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,POST",
         },
       }
     );
+    console.log(response.data);
     return response.data;
   }
 
@@ -442,6 +447,8 @@ class GameRoom extends Component {
       {
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,POST",
         },
       }
     );

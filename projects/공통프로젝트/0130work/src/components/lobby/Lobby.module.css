@@ -2,36 +2,3 @@
   display: flex;
   flex-wrap: nowrap;
 }
-
-.roomSearch {
-  padding: 4px;
-  font-size: 17px;
-  font-weight: bold;
-  width: 45px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0);
-  background-image: url("../../assets/search.png");
-  background-repeat: no-repeat;
-  background-size: 28px;
-  background-position: 10px center;
-  border: none;
-  text-align: center;
-  outline: none;
-}
-
-.roomSearch:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-  transition: all 0.5s;
-}
-
-.roomSearch:focus {
-  border-radius: 20px;
-  border: 2px solid rgba(0, 0, 0);
-  height: 28px;
-  width: 500px;
-}
-
-.roomContainer {
-  width: 100%;
-}
