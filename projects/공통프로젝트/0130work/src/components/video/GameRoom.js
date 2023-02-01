@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { OpenVidu } from "openvidu-browser";
 import axios from "axios";
 import UserVideoComponent from "./UserVideoComponent";
@@ -114,13 +114,40 @@ class GameRoom extends Component {
     this.init = this.init.bind(this);
     this.predict = this.predict.bind(this);
     this.chattoggle = this.chattoggle.bind(this);
+    this.changemodel = this.changemodel.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener("beforeunload", () => {
+      const mySession = this.state.session;
+      if (mySession) {
+        mySession.disconnect();
+      }
+    });
     setTimeout(() => {
       this.setmodel();
       this.joinSession();
     }, 500);
+  }
+
+  componentWillUnmount() {
+    window.location.reload();
+    this.leaveSession();
+    // const mySession = this.state.session;
+    // if (mySession) {
+    //   mySession.disconnect();
+    // }
+    // // back으로 axios요청을 보내 방 정보 갱신
+    // // back에서는 현재 방 인원수가 1명일때 방 관리하는 곳에서 방을 삭제하고
+    // // 1명보다 많을 때는 방의 인원수를 한명 줄인다.
+    // this.OV = null;
+    // this.setState({
+    //   session: "",
+    //   subscribers: [],
+    //   mySessionId: "",
+    //   mainStreamManager: undefined,
+    //   publisher: undefined,
+    // });
   }
 
   componentDidUpdate(previousProps, previousState) {
@@ -267,6 +294,7 @@ class GameRoom extends Component {
                 if (this.state.myUserNick === host) {
                   this.setState({ ishost: true });
                 }
+                console.log(this.state.ishost);
               });
               let publisher = await this.OV.initPublisherAsync(undefined, {
                 audioSource: undefined,
@@ -293,7 +321,7 @@ class GameRoom extends Component {
     return new Promise((resolve, reject) => {
       window.$.ajax({
         type: "GET",
-        url: `${"https://i8e107.p.ssafy.io/api/sessions/"}${
+        url: `${"https://i8e107.p.ssafy.io/openvidu/api/sessions/"}${
           this.state.mySessionId
         }/connection`,
         headers: {
@@ -306,6 +334,7 @@ class GameRoom extends Component {
         success: (response) => {
           let content = response.content;
           content.sort((a, b) => a.createAt - b.createdAt);
+          console.log(content);
 
           resolve(content[0].clientData);
         },
@@ -352,7 +381,8 @@ class GameRoom extends Component {
       publisher: undefined,
     });
 
-    this.props.history.push("/");
+    const { navigate } = this.props;
+    navigate("/lobby");
   }
 
   async setmodel() {
@@ -375,6 +405,18 @@ class GameRoom extends Component {
 
     // const a = await tmPose.load(metadataURL, modelURL);
     // console.log(a);
+  }
+
+  async changemodel() {
+    const modelURL =
+      "https://teachablemachine.withgoogle.com/models/UQcyvhIye/model.json";
+    const metadataURL =
+      "https://teachablemachine.withgoogle.com/models/UQcyvhIye/metadata.json";
+
+    this.setState({
+      model: await tmPose.load(modelURL, metadataURL),
+    });
+    console.log("바꼇다");
   }
 
   async init() {
@@ -468,7 +510,7 @@ class GameRoom extends Component {
               <p>{this.state.mySessionId}</p>
               <p>팀명 : </p>
             </TitleWrapper>
-            <button>나가기</button>
+            <button onClick={this.leaveSession}>나가기</button>
           </HeadWrapper>
         </NavWrapper>
         <BodyWrapper>
@@ -504,7 +546,9 @@ class GameRoom extends Component {
               </div>
               <div id="game-container">
                 <button onClick={this.start}>start</button>
-                <UnityGame data={this.predict} ref={this.state.myRef} />
+                <button onClick={this.changemodel}>모델 바꾸기</button>
+
+                <UnityGame ref={this.state.myRef} />
                 <div>
                   <Chats chats={chats} />
                 </div>
@@ -567,4 +611,10 @@ class GameRoom extends Component {
   }
 }
 
-export default GameRoom;
+// export default GameRoom;
+
+export default function (props) {
+  const navigate = useNavigate();
+
+  return <GameRoom {...props} navigate={navigate} />;
+}

@@ -12,6 +12,7 @@ const NickTag = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  margin-left: 10px;
 `;
 
 class UserVideoComponent extends Component {

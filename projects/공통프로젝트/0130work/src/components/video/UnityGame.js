@@ -1,9 +1,9 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import "./UnityGame.css";
 
 const UnityGame = forwardRef((props, ref) => {
-  const { unityProvider, sendMessage } = useUnityContext({
+  const { unityProvider, sendMessage, unload } = useUnityContext({
     loaderUrl: "unitybuild/build.loader.js",
     dataUrl: "unitybuild/build.data",
     frameworkUrl: "unitybuild/build.framework.js",
@@ -25,12 +25,14 @@ const UnityGame = forwardRef((props, ref) => {
     sendAttack,
   }));
 
-  // useEffect(() => {
-  //   unityProvider.on("canvas", (canvas) => {
-  //     canvas.width = 1000;
-  //     canvas.height = 700;
-  //   });
-  // }, []);
+  // const handleUnload = async () => {
+  //   try {
+  //     await unload();
+  //     console.log("게임 종료");
+  //   } catch (error) {
+  //     console.log("에러났다");
+  //   }
+  // };
 
   return (
     <div>
