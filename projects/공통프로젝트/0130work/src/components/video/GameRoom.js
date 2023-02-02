@@ -321,7 +321,7 @@ class GameRoom extends Component {
     return new Promise((resolve, reject) => {
       window.$.ajax({
         type: "GET",
-        url: `${"https://i8e107.p.ssafy.io/openvidu/api/sessions/"}${
+        url: `${"https://i8e107.p.ssafy.io:8443/openvidu/api/sessions/"}${
           this.state.mySessionId
         }/connection`,
         headers: {

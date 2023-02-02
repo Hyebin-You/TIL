@@ -14,7 +14,7 @@ class RoomList extends Component {
 
   componentDidMount() {
     axios
-      .get("https://i8e107.p.ssafy.io/openvidu/api/sessions", {
+      .get("https://i8e107.p.ssafy.io:8443/openvidu/api/sessions", {
         headers: {
           Authorization: `Basic ${btoa(`OPENVIDUAPP:MY_SECRET`)}`,
         },
