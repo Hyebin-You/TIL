@@ -24,6 +24,8 @@ const TeamWrapper = styled.div`
   text-align: center;
   border: 1px solid black;
   border-radius: 25px;
+  margin-right: auto;
+  margin-left: auto;
 `;
 
 const RoomItem = (props) => {

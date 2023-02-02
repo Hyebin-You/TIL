@@ -16,10 +16,36 @@ const NickTag = styled.div`
   margin-left: 10px;
 `;
 
+const Warning = styled.div`
+  position: absolute;
+  top: 25px;
+  right: -80px;
+  width: 100px;
+  background-color: rgba(128, 128, 128, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+`;
+
 class UserVideoComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isActive: false,
+    };
+
+    this.handleIsActive = this.handleIsActive.bind(this);
+  }
+
   getNicknameTag() {
     return JSON.parse(this.props.streamManager.stream.connection.data)
       .clientData;
+  }
+
+  handleIsActive() {
+    this.setState({ isActive: !this.state.isActive });
   }
 
   render() {
@@ -29,7 +55,18 @@ class UserVideoComponent extends Component {
           <StreamComponent>
             <OpenViduVideoComponent streamManager={this.props.streamManager} />
             <NickTag>{this.getNicknameTag()}</NickTag>
-            <img src={AlarmImage} className="alert" />
+            <img
+              src={AlarmImage}
+              className="alert"
+              alt="신고/강퇴 버튼"
+              onClick={this.handleIsActive}
+            />
+            <Warning className={this.state.isActive ? "active" : "notActive"}>
+              <ul>
+                <li>신고하기</li>
+                <li>강퇴</li>
+              </ul>
+            </Warning>
           </StreamComponent>
         ) : null}
       </div>

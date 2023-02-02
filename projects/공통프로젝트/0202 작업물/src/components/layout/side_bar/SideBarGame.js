@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import AuthContext from "../../../store/auth-context";
-// import { GameContextProvider } from "../../../store/game-context";
-import { InfoProvider } from "../../../store/infoContext";
 import CreateRoomModal from "./CreateRoomModal";
 import FriendListModal from "./FriendListModal";
 import "./SideBar.module.css";
@@ -21,9 +19,8 @@ const SideBar = () => {
       </div>
 
       {/* 방 생성 모달 */}
-      <InfoProvider>
-        <CreateRoomModal />
-      </InfoProvider>
+
+      <CreateRoomModal />
 
       {/* 친구 목록 모달 */}
       <FriendListModal />

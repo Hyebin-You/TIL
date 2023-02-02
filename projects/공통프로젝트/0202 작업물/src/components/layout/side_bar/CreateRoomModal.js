@@ -1,16 +1,14 @@
-import { useState, useContext } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../../UI/Modal";
 import Button from "../../UI/Button";
-// import GameContext from "../../../store/game-context";
-import InfoContext from "../../../store/infoContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const APPLICATION_SERVER_URL = "http://localhost:5000/";
 
 const CreateRoom = () => {
   // 네비게이션을 위한 함수
   const navigate = useNavigate();
-
-  // 게임방 관련 데이터 컨텍스트
-  const gameCtx = useContext(InfoContext);
 
   // 모달을 열고 닫는 함수
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,6 +21,7 @@ const CreateRoom = () => {
 
   // const { makeroom } = useContext(GameContext);
 
+  const [roomId, setRoomId] = useState("");
   const [roomTitle, setRoomTitle] = useState("");
   const [teamTitle, setTeamTitle] = useState("");
   const [isopened, setIsopened] = useState(true);
@@ -51,11 +50,35 @@ const CreateRoom = () => {
     setRoomPassword(event.target.value);
   };
 
-  const handleMakeRoom = () => {
-    console.log("방 만들기");
-    gameCtx.makeRoom(roomTitle, teamTitle, isopened, roomPassword);
-    console.log(gameCtx.roomId);
+  const makeRoom = () => {
+    axios
+      .post(
+        APPLICATION_SERVER_URL + "api/rooms",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST",
+          },
+        }
+      )
+      .then((response) => {
+        setRoomId(response.data);
+      });
   };
+
+  useEffect(() => {
+    if (roomId !== "") {
+      navigate("/gameroom", {
+        state: {
+          roomId,
+          roomTitle,
+          teamTitle,
+        },
+      });
+    }
+  }, [roomId]);
 
   return (
     <div>
@@ -89,10 +112,10 @@ const CreateRoom = () => {
             비밀번호 : <input type="text" onChange={handleRoomPasswordChange} />
           </p>
         ) : null}
-        <button onClick={() => navigate("/gameroom", { roomInfo: teamTitle })}>
+        <button onClick={() => navigate("/gameroom", { state: teamTitle })}>
           게임방 생성
         </button>
-        <button onClick={handleMakeRoom}>게임방 생성</button>
+        <button onClick={makeRoom}>방 아이디 받아오기</button>
       </Modal>
     </div>
   );

@@ -6,11 +6,7 @@ import UserVideoComponent from "./UserVideoComponent";
 import UnityGame from "./UnityGame";
 import Chats from "../chat/Chats";
 import "./GameRoom.css";
-
-import jQuery from "jquery";
-window.$ = window.jQuery = jQuery;
-
-// style
+import $ from "jquery";
 import styled from "styled-components";
 import { Dialog } from "@mui/material";
 import {
@@ -22,7 +18,6 @@ import {
   VideocamOutlined,
 } from "@mui/icons-material";
 
-const OPENVIDU_SERVER_URL = "http://localhost:4443/";
 const APPLICATION_SERVER_URL = "http://localhost:5000/";
 const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 
@@ -83,8 +78,10 @@ class GameRoom extends Component {
     super(props);
 
     this.state = {
-      mySessionId: props.home.roomId,
-      myUserNick: props.home.nickname,
+      mySessionId: undefined,
+      myUserNick: undefined,
+      mySessionTitle: undefined,
+      myTeamTitle: undefined,
       session: undefined,
       mainStreamManager: undefined,
       publisher: undefined,
@@ -127,9 +124,18 @@ class GameRoom extends Component {
     });
     setTimeout(() => {
       const { location } = this.props;
-      const { roomInfo } = location;
-      console.log(location);
-      console.log(roomInfo);
+      if (location.state === null) {
+        const { navigate } = this.props;
+        navigate("/lobby");
+      }
+      const { roomId, roomTitle, teamTitle } = location.state;
+      this.setState({
+        mySessionId: roomId,
+        myUserNick: localStorage.getItem("nickname"),
+        mySessionTitle: roomTitle,
+        myTeamTitle: teamTitle,
+      });
+
       this.setmodel();
       this.joinSession();
     }, 500);
@@ -327,7 +333,7 @@ class GameRoom extends Component {
 
   updateHost() {
     return new Promise((resolve, reject) => {
-      window.$.ajax({
+      $.ajax({
         type: "GET",
         url: `${"https://i8e107.p.ssafy.io:8443/openvidu/api/sessions/"}${
           this.state.mySessionId
@@ -470,6 +476,7 @@ class GameRoom extends Component {
   }
 
   async getToken() {
+    console.log(this.state.mySessionId);
     const sessionId = await this.createSession(this.state.mySessionId);
     return await this.createToken(sessionId);
   }
@@ -515,7 +522,7 @@ class GameRoom extends Component {
           <HeadWrapper>
             <img alt="로고 이미지" />
             <TitleWrapper>
-              <p>{this.state.mySessionId}</p>
+              <p style={{ marginRight: 10 }}>{this.state.mySessionId}</p>
               <p>팀명 : </p>
             </TitleWrapper>
             <button onClick={this.leaveSession}>나가기</button>
