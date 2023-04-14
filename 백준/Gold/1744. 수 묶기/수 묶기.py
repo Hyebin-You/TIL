@@ -4,7 +4,7 @@ input = sys.stdin.readline
 
 N = int(input())
 neg = []
-zero = 0
+zero = False
 pos = []
 
 for _ in range(N):
@@ -12,7 +12,7 @@ for _ in range(N):
     if n < 0:
         neg.append(n)
     elif not n:
-        zero += 1
+        zero = True
     else:
         pos.append(n)
 
